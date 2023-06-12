@@ -1,9 +1,11 @@
-package com.example.fooddeliveryapp;
+package com.example.fooddeliveryapp.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+
+import com.example.fooddeliveryapp.R;
 
 public class IntroActivity extends AppCompatActivity {
 
