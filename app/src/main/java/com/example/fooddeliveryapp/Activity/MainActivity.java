@@ -1,17 +1,18 @@
 package com.example.fooddeliveryapp.Activity;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
-
 import com.example.fooddeliveryapp.Adapter.CategoryAdapter;
+import com.example.fooddeliveryapp.Adapter.RecommendedAdapter;
 import com.example.fooddeliveryapp.Domain.CategoryDomain;
+import com.example.fooddeliveryapp.Domain.FoodDomain;
 import com.example.fooddeliveryapp.R;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,7 +31,13 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewPopularList = findViewById(R.id.view2);
         recyclerViewPopularList.setLayoutManager(layoutManager);
 
+        ArrayList<FoodDomain> foodList = new ArrayList<>();
+        foodList.add(new FoodDomain("Pepperoni Pizza", "pizza1","slices pepperoni ,mozzarella cheese, pizza sauce, pizza dough",13.0,5,20,1000));
+        foodList.add(new FoodDomain("Burger", "burger","beef, cheese, tomato, onion, lettuce, ketchup, mayonnaise, mustard, pickles",10.0,4,15,800));
+        foodList.add(new FoodDomain("Vegetable Pizza", "pizza3","mozzarella cheese, pizza sauce, pizza dough, onion, tomato, mushroom, bell pepper, olive",12.0,4,20,900));
 
+        adapter2 = new RecommendedAdapter(foodList);
+        recyclerViewPopularList.setAdapter(adapter2);
     }
 
     private void recyclerViewCategory() {

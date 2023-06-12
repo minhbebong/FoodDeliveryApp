@@ -11,12 +11,11 @@ public class FoodDomain {
     private int calories;
 
 
-    public FoodDomain(String title, String pic, String description, Double fee, int numberInCart, int star, int time, int calories) {
+    public FoodDomain(String title, String pic, String description, Double fee, int star, int time, int calories) {
         this.title = title;
         this.pic = pic;
         this.description = description;
         this.fee = fee;
-        this.numberInCart = numberInCart;
         this.star = star;
         this.time = time;
         this.calories = calories;
