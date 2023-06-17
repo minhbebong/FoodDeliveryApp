@@ -12,16 +12,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.fooddeliveryapp.Domain.CategoryDomain;
+import com.example.fooddeliveryapp.Entity.Category;
 import com.example.fooddeliveryapp.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryHolder>{
 
-    ArrayList<CategoryDomain> categoryDomains;
+    List<Category> categories;
 
-    public CategoryAdapter(ArrayList<CategoryDomain> categoryDomains) {
-        this.categoryDomains = categoryDomains;
+    public CategoryAdapter(List<Category> categories) {
+        this.categories = categories;
     }
 
     @NonNull
@@ -34,15 +36,15 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
     @Override
     public void onBindViewHolder(@NonNull CategoryHolder holder, int position) {
-        holder.categoryName.setText(categoryDomains.get(position).getTitle());
+        holder.categoryName.setText(categories.get(position).getTitle());
         int drawableResourceId = holder.itemView.getContext()
-                .getResources().getIdentifier(categoryDomains.get(position).getPic(), "drawable", holder.itemView.getContext().getPackageName());
+                .getResources().getIdentifier(categories.get(position).getPic(), "drawable", holder.itemView.getContext().getPackageName());
         Glide.with(holder.itemView.getContext()).load(drawableResourceId).into(holder.categoryImage);
     }
 
     @Override
     public int getItemCount() {
-        return categoryDomains.size();
+        return categories.size();
     }
 
     class CategoryHolder extends RecyclerView.ViewHolder{

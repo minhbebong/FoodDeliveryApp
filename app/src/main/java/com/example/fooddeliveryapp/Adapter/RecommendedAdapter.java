@@ -1,5 +1,6 @@
 package com.example.fooddeliveryapp.Adapter;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,17 +11,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.fooddeliveryapp.Domain.FoodDomain;
+import com.example.fooddeliveryapp.Activity.ShowDetailActivity;
+import com.example.fooddeliveryapp.Entity.Food;
 import com.example.fooddeliveryapp.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RecommendedAdapter extends RecyclerView.Adapter<RecommendedAdapter.RecommendedHolder>{
 
-    ArrayList<FoodDomain> foodDomains;
+    List<Food> foods;
 
-    public RecommendedAdapter(ArrayList<FoodDomain> categoryDomains) {
-        this.foodDomains = categoryDomains;
+    public RecommendedAdapter(List<Food> foods) {
+        this.foods = foods;
     }
 
 
@@ -33,17 +36,23 @@ public class RecommendedAdapter extends RecyclerView.Adapter<RecommendedAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull RecommendedHolder holder, int position) {
-        FoodDomain foodDomain = foodDomains.get(position);
-        holder.title.setText(foodDomain.getTitle());
-        holder.fee.setText(foodDomain.getFee().toString());
+        Food Food = foods.get(position);
+        holder.title.setText(Food.getTitle());
+        holder.fee.setText(Food.getFee().toString());
         int drawableResourceId = holder.itemView.getContext()
-                .getResources().getIdentifier(foodDomain.getPic(), "drawable", holder.itemView.getContext().getPackageName());
+                .getResources().getIdentifier(Food.getPic(), "drawable", holder.itemView.getContext().getPackageName());
         Glide.with(holder.itemView.getContext()).load(drawableResourceId).into(holder.pic);
+
+        holder.addBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(holder.itemView.getContext(), ShowDetailActivity.class);
+            intent.putExtra("fid", Food.getId());
+            holder.itemView.getContext().startActivity(intent);
+        });
     }
 
     @Override
     public int getItemCount() {
-        return foodDomains.size();
+        return foods.size();
     }
 
 
