@@ -4,6 +4,10 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.example.fooddeliveryapp.Helper.JsonHelper;
+
+import java.util.List;
+
 
 @Entity
 public class Cart {
@@ -16,8 +20,7 @@ public class Cart {
     @ColumnInfo
     public String listFood;
 
-    public Cart(int id, int userId, String listFood) {
-        this.id = id;
+    public Cart( int userId, String listFood) {
         this.userId = userId;
         this.listFood = listFood;
     }
@@ -47,5 +50,18 @@ public class Cart {
 
     public void setListFood(String listFood) {
         this.listFood = listFood;
+    }
+
+    public double getTotalFee(){
+        List<Food> list = JsonHelper.parseJsonToList(listFood, Food.class);
+        double total = 0.0;
+        for (int i = 0; i < list.size(); i++){
+            total += list.get(i).getNumberInCart() * list.get(i).getFee();
+        }
+        return total;
+    }
+    public int getCartSize(){
+        List<Food> list = JsonHelper.parseJsonToList(listFood, Food.class);
+        return list.size();
     }
 }

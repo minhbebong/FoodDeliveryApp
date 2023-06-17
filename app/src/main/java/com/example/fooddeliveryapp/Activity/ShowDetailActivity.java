@@ -2,46 +2,39 @@ package com.example.fooddeliveryapp.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.fooddeliveryapp.Dao.AppDatabase;
-import com.example.fooddeliveryapp.Entity.Cart;
 import com.example.fooddeliveryapp.Entity.Food;
-import com.example.fooddeliveryapp.Helper.ManagementCart;
 import com.example.fooddeliveryapp.R;
+import com.example.fooddeliveryapp.Service.CartService;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class ShowDetailActivity extends AppCompatActivity {
 
     private TextView addToCartBtn;
     private TextView titleTxt,feeTxt,descriptionTxt,numberOrderTxt,starTxt,caloriesTxt,timeTxt,totalPriceTxt;
     private ImageView plusBtn,minusBtn,picFood;
-    private int fid;
-    private int numberOrder = 1;
-
+    private Food food;
     AppDatabase db;
-    private ManagementCart managementCart;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_detail);
         db = AppDatabase.getInstance(getApplicationContext());
-        managementCart = new ManagementCart(this);
         initView();
         getBundle();
     }
 
     private void getBundle() {
-        fid = getIntent().getIntExtra("fid",0);
+        int fid = getIntent().getIntExtra("fid",0);
         new Thread(() -> {
-            Food food = db.foodDao().findById(fid);
+            food = db.foodDao().findById(fid);
+            food.setNumberInCart(1); // set default number in cart
             runOnUiThread(() -> {
                 int drawableResourceId = this.getResources().getIdentifier(food.getPic(), "drawable", this.getPackageName());
                 Glide.with(this).load(drawableResourceId).into(picFood);
@@ -51,25 +44,26 @@ public class ShowDetailActivity extends AppCompatActivity {
                 starTxt.setText(food.getStar()+"");
                 caloriesTxt.setText(food.getCalories()+" Calories");
                 timeTxt.setText(food.getTime()+" minutes");
-                numberOrderTxt.setText(numberOrder+"");
-                totalPriceTxt.setText("$" + food.getFee() * numberOrder);
+                numberOrderTxt.setText(food.getNumberInCart()+"");
+                totalPriceTxt.setText("$" + food.getFee() * food.getNumberInCart());
 
                 plusBtn.setOnClickListener(v -> {
-                    numberOrder++;
-                    numberOrderTxt.setText(numberOrder+"");
-                    totalPriceTxt.setText("$" + food.getFee() * numberOrder);
+                    food.setNumberInCart(food.getNumberInCart()+1);
+                    numberOrderTxt.setText(food.getNumberInCart()+"");
+                    totalPriceTxt.setText("$" + food.getFee() * food.getNumberInCart());
                 });
+
                 minusBtn.setOnClickListener(v -> {
-                    if(numberOrder > 1){
-                        numberOrder--;
-                        numberOrderTxt.setText(numberOrder+"");
-                        totalPriceTxt.setText("$" + food.getFee() * numberOrder);
+                    if(food.getNumberInCart() > 1){
+                        food.setNumberInCart(food.getNumberInCart()-1);
+                        numberOrderTxt.setText(food.getNumberInCart()+"");
+                        totalPriceTxt.setText("$" + food.getFee() * food.getNumberInCart());
                     }
                 });
 
                 addToCartBtn.setOnClickListener(v -> {
-                    food.setNumberInCart(numberOrder);
-                    managementCart.insertFood(food);
+                    CartService.AddToCart(food,db,this);
+                    Toast.makeText(this, "Added to cart", Toast.LENGTH_SHORT).show();
                 });
             });
         }).start();
@@ -91,17 +85,5 @@ public class ShowDetailActivity extends AppCompatActivity {
         totalPriceTxt = findViewById(R.id.totalPriceTxt);
     }
 
-    private void AddToCart(Food food) {
-        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-        int id = Integer.parseInt(sharedPreferences.getString("user_id",""));
-        new Thread(() -> {
-            List<Food> foods ;
-            Cart cart = db.cartDao().findByUserId(id);
-            if (cart ==null) {
 
-            }
-
-        }).start();
-
-    }
 }

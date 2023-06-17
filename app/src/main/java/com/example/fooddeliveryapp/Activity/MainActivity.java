@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.fooddeliveryapp.Adapter.CategoryAdapter;
 import com.example.fooddeliveryapp.Adapter.RecommendedAdapter;
 import com.example.fooddeliveryapp.Dao.AppDatabase;
+import com.example.fooddeliveryapp.Entity.Food;
+import com.example.fooddeliveryapp.Helper.JsonHelper;
 import com.example.fooddeliveryapp.R;
 
 public class MainActivity extends AppCompatActivity {

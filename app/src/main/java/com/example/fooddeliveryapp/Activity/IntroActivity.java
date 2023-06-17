@@ -8,14 +8,15 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.example.fooddeliveryapp.R;
+import com.example.fooddeliveryapp.constant.GlobalConstant;
 
 public class IntroActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(GlobalConstant.PREFS_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("user_id", "1");
+        editor.putString(GlobalConstant.CURRENT_USER, "1");
         editor.apply();
 
         super.onCreate(savedInstanceState);

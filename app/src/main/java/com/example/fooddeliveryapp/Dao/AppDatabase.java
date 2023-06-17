@@ -7,6 +7,7 @@ import androidx.room.RoomDatabase;
 
 import com.example.fooddeliveryapp.Entity.*;
 import com.example.fooddeliveryapp.Helper.DbHelper;
+import com.example.fooddeliveryapp.constant.GlobalConstant;
 
 @Database(entities = {User.class, Category.class, Food.class, Cart.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
@@ -16,9 +17,9 @@ public abstract class AppDatabase extends RoomDatabase {
             instance = androidx.room.Room.databaseBuilder(
                     context.getApplicationContext(),
                     AppDatabase.class,
-                    "food-db"
-            ).allowMainThreadQueries().build();
-            if (!context.getDatabasePath("food-db").exists()) {
+                    GlobalConstant.DB_NAME
+            ).build();
+            if (!context.getDatabasePath(GlobalConstant.DB_NAME).exists()) {
                 DbHelper.initDb(instance);
             }
             return instance;

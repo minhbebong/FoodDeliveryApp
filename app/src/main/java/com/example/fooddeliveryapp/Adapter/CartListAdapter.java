@@ -1,7 +1,6 @@
 package com.example.fooddeliveryapp.Adapter;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,22 +12,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.fooddeliveryapp.Entity.Food;
-import com.example.fooddeliveryapp.Helper.ManagementCart;
-import com.example.fooddeliveryapp.Interface.ChangeNumberItemsListener;
 import com.example.fooddeliveryapp.R;
+import com.example.fooddeliveryapp.Interface.CartChange;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.CartListHolder>{
 
-    ArrayList<Food> Foods;
-    private ManagementCart managementCart;
-    ChangeNumberItemsListener changeNumberItemsListener;
+    List<Food> Foods;
+    CartChange cartExecute;
 
-    public CartListAdapter(ArrayList<Food> categoryDomains, Context context, ChangeNumberItemsListener changeNumberItemsListener) {
+    public CartListAdapter(List<Food> categoryDomains , CartChange cartExecute) {
         this.Foods = categoryDomains;
-        this.managementCart = new ManagementCart(context);
-        this.changeNumberItemsListener = changeNumberItemsListener;
+        this.cartExecute = cartExecute;
     }
 
 
@@ -42,27 +38,27 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.CartLi
     @SuppressLint("RecyclerView")
     @Override
     public void onBindViewHolder(@NonNull CartListHolder holder, int position) {
-        Food Food = Foods.get(position);
-        holder.title.setText(Food.getTitle());
-        holder.feeEachItem.setText("$" + Food.getFee().toString());
-        holder.totalEachItem.setText("$" + Math.round(Food.getFee() * Food.getNumberInCart() * 100.0) / 100.0);
-        holder.num.setText(Food.getNumberInCart() + "");
+        Food food = Foods.get(position);
+        holder.title.setText(food.getTitle());
+        holder.feeEachItem.setText("$" + food.getFee().toString());
+        holder.totalEachItem.setText("$" + Math.round(food.getFee() * food.getNumberInCart() * 100.0) / 100.0);
+        holder.num.setText(food.getNumberInCart() + "");
         int drawableResourceId = holder.itemView.getContext()
-                .getResources().getIdentifier(Food.getPic(), "drawable", holder.itemView.getContext().getPackageName());
+                .getResources().getIdentifier(food.getPic(), "drawable", holder.itemView.getContext().getPackageName());
         Glide.with(holder.itemView.getContext()).load(drawableResourceId).into(holder.pic);
 
         holder.plusBtn.setOnClickListener(v ->{
-            managementCart.plusNumberFood(Foods, position, ()->{
-                notifyDataSetChanged();
-                changeNumberItemsListener.changed();
-            });
+            food.setNumberInCart(food.getNumberInCart() + 1);
+            notifyDataSetChanged();
         });
 
         holder.minusBtn.setOnClickListener(v ->{
-            managementCart.minusNumberFood(Foods, position, ()->{
-                notifyDataSetChanged();
-                changeNumberItemsListener.changed();
-            });
+            food.setNumberInCart(food.getNumberInCart() - 1);
+            if (food.getNumberInCart() == 0){
+                Foods.remove(position);
+            }
+            cartExecute.execute(food);
+            notifyDataSetChanged();
         });
     }
 
