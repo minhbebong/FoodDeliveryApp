@@ -1,7 +1,5 @@
 package com.example.fooddeliveryapp.Activity;
 
-import static com.example.fooddeliveryapp.constant.GlobalConstant.DELIVERY_FEE;
-import static com.example.fooddeliveryapp.constant.GlobalConstant.PERCENT_TAX;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,6 +12,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.fooddeliveryapp.Adapter.CartListAdapter;
+import com.example.fooddeliveryapp.Constant.GlobalConstant;
 import com.example.fooddeliveryapp.Dao.AppDatabase;
 import com.example.fooddeliveryapp.Entity.Cart;
 import com.example.fooddeliveryapp.Entity.Food;
@@ -48,7 +47,7 @@ public class CartActivity extends AppCompatActivity {
         LinearLayout cartBtn = findViewById(R.id.cartBtn);
 
         homeBtn.setOnClickListener(v -> {
-            startActivity(new Intent(CartActivity.this,MainActivity.class));
+            startActivity(new Intent(CartActivity.this, HomeActivity.class));
         });
 
         cartBtn.setOnClickListener(v -> {
@@ -96,13 +95,13 @@ public class CartActivity extends AppCompatActivity {
     private void calculateCart(Cart cart) {
         if(cart == null) return;
         double totalFee = cart.getTotalFee();
-        tax = (double)Math.round(totalFee*PERCENT_TAX *100)/100;
+        tax = (double)Math.round(totalFee* GlobalConstant.PERCENT_TAX *100)/100;
         itemTotal = (double)Math.round(totalFee*100)/100;
-        total = (double)Math.round((itemTotal + tax + DELIVERY_FEE)*100)/100;
+        total = (double)Math.round((itemTotal + tax + GlobalConstant.DELIVERY_FEE)*100)/100;
 
         totalFeeTxt.setText("$"+itemTotal);
         taxTxt.setText("$"+tax);
-        deliveryFeeTxt.setText("$"+DELIVERY_FEE);
+        deliveryFeeTxt.setText("$"+ GlobalConstant.DELIVERY_FEE);
         totalTxt.setText("$"+total);
 
     }

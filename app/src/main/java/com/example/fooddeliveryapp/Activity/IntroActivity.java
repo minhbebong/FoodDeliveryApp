@@ -8,7 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.example.fooddeliveryapp.R;
-import com.example.fooddeliveryapp.constant.GlobalConstant;
+import com.example.fooddeliveryapp.Constant.*;
 
 public class IntroActivity extends AppCompatActivity {
 

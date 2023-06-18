@@ -5,9 +5,9 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
 
+import com.example.fooddeliveryapp.Constant.GlobalConstant;
 import com.example.fooddeliveryapp.Entity.*;
 import com.example.fooddeliveryapp.Helper.DbHelper;
-import com.example.fooddeliveryapp.constant.GlobalConstant;
 
 @Database(entities = {User.class, Category.class, Food.class, Cart.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {

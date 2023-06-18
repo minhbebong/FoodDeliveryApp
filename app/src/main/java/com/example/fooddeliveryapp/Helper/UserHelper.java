@@ -3,7 +3,7 @@ package com.example.fooddeliveryapp.Helper;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.example.fooddeliveryapp.constant.GlobalConstant;
+import com.example.fooddeliveryapp.Constant.GlobalConstant;
 
 public class UserHelper {
     public static int getCurrentUserId(Context context) {
