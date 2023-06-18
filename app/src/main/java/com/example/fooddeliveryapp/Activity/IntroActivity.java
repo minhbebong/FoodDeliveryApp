@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import com.example.fooddeliveryapp.Dao.AppDatabase;
 import com.example.fooddeliveryapp.R;
 import com.example.fooddeliveryapp.Constant.*;
 
@@ -19,6 +20,7 @@ public class IntroActivity extends AppCompatActivity {
         editor.putString(GlobalConstant.CURRENT_USER, "1");
         editor.apply();
 
+        AppDatabase.getInstance(getApplicationContext()); // init db access
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
 

@@ -53,9 +53,9 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        db = AppDatabase.getInstance(view.getContext());
-//        recyclerViewCategory(view);
-//        recyclerViewPopular(view);
+        db = AppDatabase.getInstance(view.getContext());
+        recyclerViewCategory(view);
+        recyclerViewPopular(view);
     }
 
     private void recyclerViewPopular(View view) {
@@ -73,7 +73,9 @@ public class HomeFragment extends Fragment {
 
     private void recyclerViewCategory(View view) {
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false);
+
         recyclerViewCategoryList = view.findViewById(R.id.view1);
+        recyclerViewCategoryList.setHasFixedSize(true);
         recyclerViewCategoryList.setLayoutManager(layoutManager);
 
 

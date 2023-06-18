@@ -41,6 +41,7 @@ public class RecommendedAdapter extends RecyclerView.Adapter<RecommendedAdapter.
         holder.fee.setText(Food.getFee().toString());
         int drawableResourceId = holder.itemView.getContext()
                 .getResources().getIdentifier(Food.getPic(), "drawable", holder.itemView.getContext().getPackageName());
+        //get image Resource in drawable folder
         Glide.with(holder.itemView.getContext()).load(drawableResourceId).into(holder.pic);
 
         holder.addBtn.setOnClickListener(v -> {

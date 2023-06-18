@@ -180,7 +180,6 @@
                             android:id="@+id/imageView9"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/star"
                             app:srcCompat="@drawable/chronometer" />
 
                         <TextView
@@ -206,7 +205,6 @@
                             android:id="@+id/imageView8"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/star"
                             app:srcCompat="@drawable/flame" />
 
                         <TextView

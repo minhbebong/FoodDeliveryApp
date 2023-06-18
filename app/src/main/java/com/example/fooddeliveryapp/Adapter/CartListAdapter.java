@@ -49,6 +49,7 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.CartLi
 
         holder.plusBtn.setOnClickListener(v ->{
             food.setNumberInCart(food.getNumberInCart() + 1);
+            cartExecute.execute(food);
             notifyDataSetChanged();
         });
 

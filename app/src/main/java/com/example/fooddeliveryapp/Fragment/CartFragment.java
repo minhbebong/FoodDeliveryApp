@@ -1,12 +1,17 @@
-package com.example.fooddeliveryapp.Activity;
+package com.example.fooddeliveryapp.Fragment;
 
+import android.content.Context;
+import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -23,45 +28,50 @@ import com.example.fooddeliveryapp.Service.CartService;
 
 import java.util.List;
 
-public class CartActivity extends AppCompatActivity {
-
+public class CartFragment extends Fragment {
     private RecyclerView recyclerViewList;
     private TextView totalFeeTxt,taxTxt,deliveryFeeTxt,totalTxt,emptyTxt;
     private double tax,total,itemTotal;
     private ScrollView scrollView;
 
     private AppDatabase db;
+    public CartFragment() {
+    }
+
+
+    public static CartFragment newInstance(String param1, String param2) {
+        CartFragment fragment = new CartFragment();
+        return fragment;
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cart);
-        db = AppDatabase.getInstance(getApplicationContext());
-
-        initView();
-        initList();
-        bottomNavigation();
     }
 
-    private void bottomNavigation() {
-        LinearLayout homeBtn = findViewById(R.id.homeBtn);
-        LinearLayout cartBtn = findViewById(R.id.cartBtn);
-
-        homeBtn.setOnClickListener(v -> {
-            startActivity(new Intent(CartActivity.this, HomeActivity.class));
-        });
-
-        cartBtn.setOnClickListener(v -> {
-            startActivity(new Intent(CartActivity.this,CartActivity.class));
-        });
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_cart, container, false);
     }
 
-    private void initList() {
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        db = AppDatabase.getInstance(view.getContext());
+
+        initView(view);
+        initList(view.getContext());
+    }
+
+    private void initList(Context context) {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, RecyclerView.VERTICAL, false);
         recyclerViewList.setLayoutManager(linearLayoutManager);
 
         new Thread(() -> {
-            Cart cart = db.cartDao().findByUserId(UserHelper.getCurrentUserId(this));
-            runOnUiThread(() -> {
+            Cart cart = db.cartDao().findByUserId(UserHelper.getCurrentUserId(context));
+            getActivity().runOnUiThread(() -> {
                 if (cart == null || cart.getCartSize() == 0) {
                     emptyTxt.setVisibility(LinearLayout.VISIBLE);
                     scrollView.setVisibility(LinearLayout.GONE);
@@ -69,8 +79,8 @@ public class CartActivity extends AppCompatActivity {
                     List<Food> listFood = JsonHelper.parseJsonToList(cart.getListFood(), Food.class);
                     RecyclerView.Adapter adapter = new CartListAdapter(listFood, changedFood -> {
                         new Thread(() -> {
-                            Cart newCart = CartService.UpdateInCart(changedFood,db,this);
-                            runOnUiThread(() -> {
+                            Cart newCart = CartService.UpdateInCart(changedFood,db,context);
+                            getActivity().runOnUiThread(() -> {
                                 if (newCart.getCartSize() == 0) {
                                     emptyTxt.setVisibility(LinearLayout.VISIBLE);
                                     scrollView.setVisibility(LinearLayout.GONE);
@@ -106,13 +116,13 @@ public class CartActivity extends AppCompatActivity {
 
     }
 
-    private void initView() {
-        totalFeeTxt = findViewById(R.id.totalFeeTxt);
-        taxTxt = findViewById(R.id.taxTxt);
-        deliveryFeeTxt = findViewById(R.id.deliveryFeeTxt);
-        totalTxt = findViewById(R.id.totalTxt);
-        recyclerViewList = findViewById(R.id.view);
-        scrollView = findViewById(R.id.scrollView);
-        emptyTxt = findViewById(R.id.emptyTxt);
+    private void initView(View view) {
+        totalFeeTxt = view.findViewById(R.id.totalFeeTxt);
+        taxTxt = view.findViewById(R.id.taxTxt);
+        deliveryFeeTxt = view.findViewById(R.id.deliveryFeeTxt);
+        totalTxt = view.findViewById(R.id.totalTxt);
+        recyclerViewList = view.findViewById(R.id.view);
+        scrollView = view.findViewById(R.id.scrollView);
+        emptyTxt = view.findViewById(R.id.emptyTxt);
     }
 }

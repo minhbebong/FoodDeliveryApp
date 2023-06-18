@@ -80,7 +80,7 @@ public class ShowDetailActivity extends AppCompatActivity {
         minusBtn = findViewById(R.id.minusCartBtn);
         picFood = findViewById(R.id.foodPic);
         starTxt = findViewById(R.id.starTxt);
-        caloriesTxt = findViewById(R.id.starTxt);
+        caloriesTxt = findViewById(R.id.caloriesTxt);
         timeTxt = findViewById(R.id.timeTxt);
         totalPriceTxt = findViewById(R.id.totalPriceTxt);
     }
