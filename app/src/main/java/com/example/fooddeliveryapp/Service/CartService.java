@@ -38,7 +38,6 @@ public class CartService {
                 }
                 String listFoodJson = JsonHelper.parseListToJson(foods);
                 cart.setListFood(listFoodJson);
-                System.out.println(cart.getListFood());
                 db.cartDao().update(cart);
             }
         }).start();

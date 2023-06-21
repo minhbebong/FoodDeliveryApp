@@ -21,7 +21,4 @@ public interface UserDao {
 
     @Insert
     void insertAll(User... users);
-
-    @Query("SELECT * FROM user Where id = :id")
-    User findById(int id);
 }
