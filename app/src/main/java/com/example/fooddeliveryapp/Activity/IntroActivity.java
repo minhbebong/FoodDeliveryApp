@@ -15,17 +15,11 @@ public class IntroActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        SharedPreferences sharedPreferences = getSharedPreferences(GlobalConstant.PREFS_NAME, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(GlobalConstant.CURRENT_USER, "1");
-        editor.apply();
-
-        AppDatabase.getInstance(getApplicationContext()); // init db access
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
 
        findViewById(R.id.startBtn).setOnClickListener(v ->{
-           startActivity(new Intent(IntroActivity.this,MainActivity.class));
+           startActivity(new Intent(IntroActivity.this, LoginActivity.class));
            finish();
        });
     }

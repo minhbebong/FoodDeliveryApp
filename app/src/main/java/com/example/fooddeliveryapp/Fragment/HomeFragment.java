@@ -11,10 +11,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.fooddeliveryapp.Adapter.CategoryAdapter;
 import com.example.fooddeliveryapp.Adapter.RecommendedAdapter;
 import com.example.fooddeliveryapp.Dao.AppDatabase;
+import com.example.fooddeliveryapp.Entity.User;
+import com.example.fooddeliveryapp.Helper.UserHelper;
 import com.example.fooddeliveryapp.R;
 
 /**
@@ -26,6 +29,7 @@ public class HomeFragment extends Fragment {
 
     private RecyclerView.Adapter adapter,adapter2;
     private RecyclerView recyclerViewCategoryList,recyclerViewPopularList;
+    private TextView txtWelcome;
     private AppDatabase db;
 
     public HomeFragment() {
@@ -54,6 +58,7 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         db = AppDatabase.getInstance(view.getContext());
+        welcomeText(view);
         recyclerViewCategory(view);
         recyclerViewPopular(view);
     }
@@ -86,5 +91,15 @@ public class HomeFragment extends Fragment {
             });
         }).start();
 
+    }
+
+    private void welcomeText(View view) {
+        txtWelcome = view.findViewById(R.id.txt_welcome);
+        new Thread(() ->{
+            User currentUser = db.userDao().findById(UserHelper.getCurrentUserId(view.getContext()));
+            getActivity().runOnUiThread(() -> {
+                txtWelcome.setText("Welcome, "+ currentUser.getFullName());
+            });
+        }).start();
     }
 }
