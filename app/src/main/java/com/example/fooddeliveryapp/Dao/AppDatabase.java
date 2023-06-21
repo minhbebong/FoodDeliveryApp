@@ -9,7 +9,7 @@ import com.example.fooddeliveryapp.Constant.GlobalConstant;
 import com.example.fooddeliveryapp.Entity.*;
 import com.example.fooddeliveryapp.Helper.DbHelper;
 
-@Database(entities = {User.class, Category.class, Food.class, Cart.class}, version = 1)
+@Database(entities = {User.class, Category.class, Food.class, Cart.class, Order.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase instance;
         public static synchronized AppDatabase getInstance(Context context) {
@@ -28,4 +28,6 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract CategoryDao categoryDao();
     public abstract FoodDao foodDao();
     public abstract CartDao cartDao();
+
+    public abstract OrderDao orderDao();
 }
