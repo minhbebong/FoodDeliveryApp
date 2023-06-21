@@ -1,5 +1,8 @@
 package com.example.fooddeliveryapp.Fragment;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,6 +13,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.fooddeliveryapp.Activity.IntroActivity;
+import com.example.fooddeliveryapp.Constant.GlobalConstant;
 import com.example.fooddeliveryapp.R;
 
 public class SettingFragment extends Fragment {
@@ -38,5 +43,14 @@ public class SettingFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        view.findViewById(R.id.btn_logout).setOnClickListener(v ->{
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences(GlobalConstant.PREFS_NAME, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.clear();
+            editor.apply();
+            Intent intent = new Intent(getActivity(), IntroActivity.class);
+            startActivity(intent);
+            getActivity().finish();
+        });
     }
 }
