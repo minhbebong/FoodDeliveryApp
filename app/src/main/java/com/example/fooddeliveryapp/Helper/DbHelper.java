@@ -9,6 +9,7 @@ import com.example.fooddeliveryapp.Entity.User;
 
 public class DbHelper {
     public static void initDb(AppDatabase db) {
+
          User user = new com.example.fooddeliveryapp.Entity.User();
          user.setEmail("admin@gmail.com");
          user.setPassword("admin");
