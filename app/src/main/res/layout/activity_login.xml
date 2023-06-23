@@ -7,7 +7,6 @@
     tools:context=".Activity.LoginActivity">
 
 
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
@@ -16,18 +15,17 @@
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/bgregegister2" />
 
-
     <EditText
-        android:layout_marginTop="60dp"
         android:id="@+id/edt_email"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginTop="44dp"
         android:backgroundTint="#CCCCCC"
         android:drawableLeft="@drawable/baseline_email_24"
         android:drawablePadding="13dp"
@@ -36,36 +34,36 @@
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:textCursorDrawable="@drawable/white_cursor"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imageView10"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/imageView10"
         app:layout_constraintTop_toBottomOf="@+id/imageView10"
         app:layout_constraintWidth_percent=".8" />
 
-
     <EditText
-        android:layout_marginTop="10dp"
         android:id="@+id/edt_password"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-
+        android:layout_height="50dp"
+        android:layout_marginTop="36dp"
         android:backgroundTint="#CCCCCC"
         android:drawableLeft="@drawable/baseline_password_24"
         android:drawablePadding="13dp"
         android:hint="Password"
-        android:textCursorDrawable="@drawable/white_cursor"
         android:inputType="textPassword"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textCursorDrawable="@drawable/white_cursor"
+        app:layout_constraintEnd_toEndOf="@+id/edt_email"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edt_email"
         app:layout_constraintTop_toBottomOf="@+id/edt_email"
         app:layout_constraintWidth_percent=".8" />
 
     <TextView
-        android:layout_marginTop="90dp"
         android:id="@+id/btn_register"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="207dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="64dp"
         android:background="@drawable/rounded_button"
         android:padding="14dp"
         android:text="Login"
@@ -73,53 +71,57 @@
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="20sp"
+        android:minWidth="120dp"
+        android:minHeight="48dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.475"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imageView10"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="@+id/imageView10"
         app:layout_constraintTop_toBottomOf="@+id/edt_password"
-
-        app:layout_constraintVertical_bias="0.194"
         app:layout_constraintWidth_percent=".8" />
+
 
     <TextView
         android:id="@+id/textView20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="40dp"
         android:text="Don't have an Account? "
         android:textAlignment="center"
         android:textColor="#FBFBFB"
+        android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/btn_register"
-        app:layout_constraintHorizontal_bias="0.331"
-        app:layout_constraintStart_toStartOf="@+id/btn_register"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_register" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
+        android:id="@+id/textView"
+        android:layout_width="94dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="36dp"
+        android:minWidth="120dp"
+        android:minHeight="48dp"
         android:onClick="register"
         android:text=" Register"
         android:textAlignment="center"
         android:textColor="#FF9800"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/textView20"
-        app:layout_constraintStart_toEndOf="@+id/textView20"
-        app:layout_constraintTop_toTopOf="@+id/textView20" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_register" />
 
     <ImageView
         android:id="@+id/imageView10"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginTop="68dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.103"
         app:srcCompat="@drawable/food_app_icon2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
