@@ -24,7 +24,7 @@ public class RegisterActivity extends AppCompatActivity {
         edt_email = findViewById(R.id.edt_email);
         edt_phonenumber = findViewById(R.id.edt_phonenumber);
         edt_password = findViewById(R.id.edt_password);
-        edt_address = findViewById(R.id.edt_adress);
+        edt_address = findViewById(R.id.edt_address);
         db = AppDatabase.getInstance(this);
 
         findViewById(R.id.btn_register).setOnClickListener(new View.OnClickListener() {
