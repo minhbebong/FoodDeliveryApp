@@ -6,8 +6,8 @@ import android.content.SharedPreferences;
 import com.example.fooddeliveryapp.Constant.GlobalConstant;
 
 public class UserHelper {
-    public static int getCurrentUserId(Context context) {
+    public static String getCurrentUserId(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(GlobalConstant.PREFS_NAME, Context.MODE_PRIVATE);
-        return Integer.parseInt(sharedPreferences.getString(GlobalConstant.CURRENT_USER,"-1"));
+        return sharedPreferences.getString(GlobalConstant.CURRENT_USER,"");
     }
 }

@@ -1,41 +1,36 @@
 package com.example.fooddeliveryapp.Entity;
 
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
 
-@Entity
+
 public class Order {
-    @PrimaryKey(autoGenerate = true)
-    public int id;
+    private String id;
 
-    @ColumnInfo
-    public int userId;
+    private String userId;
 
-    @ColumnInfo
-    public String listFood;
+    private String listFood;
 
     public Order() {
     }
 
-    public Order(int userId, String listFood) {
+    public Order(String id,String userId, String listFood) {
+        this.id = id;
         this.userId = userId;
         this.listFood = listFood;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

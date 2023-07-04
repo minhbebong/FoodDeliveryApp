@@ -1,25 +1,25 @@
 package com.example.fooddeliveryapp.Dao;
 
-import androidx.room.Dao;
-import androidx.room.Insert;
-import androidx.room.Query;
-
 import com.example.fooddeliveryapp.Entity.Order;
+import com.example.fooddeliveryapp.Interface.MyCallBack;
 
 import java.util.List;
 
-@Dao
-public interface OrderDao {
+public class OrderDao {
+    //signleton
+    private static OrderDao instance;
+    private OrderDao(){}
+    public static OrderDao getInstance(){
+        if(instance == null){
+            instance = new OrderDao();
+        }
+        return instance;
+    }
+    public void getUserOrders(String uid, MyCallBack<List<Order>> myCallBack){
+        //TODO: Tham khao theo cac dao khac de viet
+    }
 
-    @Query("SELECT * FROM cart WHERE userId = :userId")
-    List<Order> findByUserId(int userId);
-
-    @Query("SELECT * FROM cart WHERE id = :id")
-    Order findById(int id);
-
-    @Insert
-    void insertAll(Order... orders);
-
-    @Insert
-    void insert(Order order);
+    public void findById(String id, MyCallBack<Order> myCallBack){
+        //TODO: Tham khao theo cac dao khac de viet
+    }
 }

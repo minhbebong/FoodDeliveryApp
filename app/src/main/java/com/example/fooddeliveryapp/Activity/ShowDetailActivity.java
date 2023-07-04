@@ -8,10 +8,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.fooddeliveryapp.Dao.AppDatabase;
+import com.example.fooddeliveryapp.Dao.FoodDao;
 import com.example.fooddeliveryapp.Entity.Food;
+import com.example.fooddeliveryapp.Interface.MyCallBack;
 import com.example.fooddeliveryapp.R;
 import com.example.fooddeliveryapp.Service.CartService;
+import com.google.firebase.database.DatabaseError;
 
 
 public class ShowDetailActivity extends AppCompatActivity {
@@ -20,24 +22,24 @@ public class ShowDetailActivity extends AppCompatActivity {
     private TextView titleTxt,feeTxt,descriptionTxt,numberOrderTxt,starTxt,caloriesTxt,timeTxt,totalPriceTxt;
     private ImageView plusBtn,minusBtn,picFood;
     private Food food;
-    AppDatabase db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_detail);
-        db = AppDatabase.getInstance(getApplicationContext());
         initView();
         getBundle();
     }
 
     private void getBundle() {
-        int fid = getIntent().getIntExtra("fid",0);
-        new Thread(() -> {
-            food = db.foodDao().findById(fid);
-            food.setNumberInCart(1); // set default number in cart
-            runOnUiThread(() -> {
-                int drawableResourceId = this.getResources().getIdentifier(food.getPic(), "drawable", this.getPackageName());
-                Glide.with(this).load(drawableResourceId).into(picFood);
+        String fid = getIntent().getStringExtra("fid");
+
+        FoodDao.getInstance().findById(fid, new MyCallBack<Food>() {
+            @Override
+            public void onLoaded(Food food) {
+                food.setNumberInCart(1); // set default number in cart
+                int drawableResourceId = ShowDetailActivity.this.getResources().getIdentifier(food.getPic(), "drawable", ShowDetailActivity.this.getPackageName());
+                Glide.with(ShowDetailActivity.this).load(drawableResourceId).into(picFood);
                 titleTxt.setText(food.getTitle());
                 feeTxt.setText("$" + food.getFee());
                 descriptionTxt.setText(food.getDescription());
@@ -60,14 +62,16 @@ public class ShowDetailActivity extends AppCompatActivity {
                         totalPriceTxt.setText("$" + food.getFee() * food.getNumberInCart());
                     }
                 });
-
                 addToCartBtn.setOnClickListener(v -> {
-                    CartService.AddToCart(food,db,this);
-                    Toast.makeText(this, "Added to cart", Toast.LENGTH_SHORT).show();
+                    CartService.AddToCart(food,ShowDetailActivity.this);
                 });
-            });
-        }).start();
+            }
 
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void initView() {

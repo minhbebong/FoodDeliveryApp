@@ -1,26 +1,20 @@
 package com.example.fooddeliveryapp.Entity;
 
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
 
 import com.example.fooddeliveryapp.Helper.JsonHelper;
 
 import java.util.List;
 
 
-@Entity
 public class Cart {
-    @PrimaryKey(autoGenerate = true)
-    public int id;
+    private String id;
 
-    @ColumnInfo
-    public int userId;
+    private String userId;
 
-    @ColumnInfo
-    public String listFood;
+    private String listFood;
 
-    public Cart( int userId, String listFood) {
+    public Cart( String id,String userId, String listFood) {
+        this.id = id;
         this.userId = userId;
         this.listFood = listFood;
     }
@@ -28,19 +22,19 @@ public class Cart {
     public Cart() {
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
@@ -52,7 +46,7 @@ public class Cart {
         this.listFood = listFood;
     }
 
-    public double getTotalFee(){
+    public double totalFee(){
         List<Food> list = JsonHelper.parseJsonToList(listFood, Food.class);
         double total = 0.0;
         for (int i = 0; i < list.size(); i++){
@@ -60,7 +54,7 @@ public class Cart {
         }
         return total;
     }
-    public int getCartSize(){
+    public int cartSize(){
         List<Food> list = JsonHelper.parseJsonToList(listFood, Food.class);
         return list.size();
     }

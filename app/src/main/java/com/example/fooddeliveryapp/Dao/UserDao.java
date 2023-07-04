@@ -1,27 +1,70 @@
 package com.example.fooddeliveryapp.Dao;
 
-import androidx.room.Dao;
-import androidx.room.Delete;
-import androidx.room.Insert;
-import androidx.room.Query;
+import androidx.annotation.NonNull;
 
-import com.example.fooddeliveryapp.Entity.Cart;
 import com.example.fooddeliveryapp.Entity.User;
+import com.example.fooddeliveryapp.Interface.MyCallBack;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-import java.util.List;
+public class UserDao {
 
-@Dao
-public interface UserDao {
+    private static UserDao instance;
+    private UserDao(){}
+    public static UserDao getInstance(){
+        if(instance == null){
+            instance = new UserDao();
+        }
+        return instance;
+    }
 
-    @Query("SELECT * FROM user WHERE email = :email")
-    User findByEmail(String email);
+    public void findById(String id, MyCallBack<User> myCallBack){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("users").child(id);
+        ValueEventListener postListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                    User u = dataSnapshot.getValue(User.class);
+                    myCallBack.onLoaded(u);
+            }
 
-    @Insert
-    void addUser(User user);
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                myCallBack.onCancelled(databaseError);
+            }
+        };
+        myRef.addListenerForSingleValueEvent(postListener);
+    }
+    public void findByEmail(String email, MyCallBack<User> myCallBack){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("users");
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                User u = null;
+                for (DataSnapshot user: dataSnapshot.getChildren()) {
+                    User temp = user.getValue(User.class);
+                    if(temp.getEmail().equals(email)){
+                        u = temp;
+                        break;
+                    }
+                }
+                myCallBack.onLoaded(u);
+            }
 
-    @Insert
-    void insertAll(User... users);
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                myCallBack.onCancelled(databaseError);
+            }
+        });
+    }
 
-    @Query("SELECT * FROM user Where id = :id")
-    User findById(int id);
+    public void insert(User user){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("users");
+        myRef.child(user.getId()).setValue(user);
+    }
 }

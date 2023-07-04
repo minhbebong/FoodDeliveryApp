@@ -1,5 +1,7 @@
 package com.example.fooddeliveryapp.Fragment;
 
+import static com.example.fooddeliveryapp.Helper.UserHelper.getCurrentUserId;
+
 import android.content.Context;
 import android.os.Bundle;
 
@@ -15,33 +17,31 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.fooddeliveryapp.Adapter.CartListAdapter;
 import com.example.fooddeliveryapp.Constant.GlobalConstant;
-import com.example.fooddeliveryapp.Dao.AppDatabase;
+import com.example.fooddeliveryapp.Dao.CartDao;
 import com.example.fooddeliveryapp.Entity.Cart;
 import com.example.fooddeliveryapp.Entity.Food;
 import com.example.fooddeliveryapp.Helper.JsonHelper;
 import com.example.fooddeliveryapp.Helper.UserHelper;
+import com.example.fooddeliveryapp.Interface.CartChange;
+import com.example.fooddeliveryapp.Interface.MyCallBack;
 import com.example.fooddeliveryapp.R;
 import com.example.fooddeliveryapp.Service.CartService;
+import com.google.firebase.database.DatabaseError;
 
 import java.util.List;
 
-public class CartFragment extends Fragment {
+public class CartFragment extends Fragment implements CartChange {
     private RecyclerView recyclerViewList;
     private TextView totalFeeTxt,taxTxt,deliveryFeeTxt,totalTxt,emptyTxt;
     private double tax,total,itemTotal;
     private ScrollView scrollView;
 
-    private AppDatabase db;
+
     public CartFragment() {
-    }
-
-
-    public static CartFragment newInstance(String param1, String param2) {
-        CartFragment fragment = new CartFragment();
-        return fragment;
     }
 
     @Override
@@ -58,9 +58,6 @@ public class CartFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        db = AppDatabase.getInstance(view.getContext());
-
         initView(view);
         initList(view.getContext());
     }
@@ -68,43 +65,31 @@ public class CartFragment extends Fragment {
     private void initList(Context context) {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, RecyclerView.VERTICAL, false);
         recyclerViewList.setLayoutManager(linearLayoutManager);
-
-        new Thread(() -> {
-            Cart cart = db.cartDao().findByUserId(UserHelper.getCurrentUserId(context));
-            getActivity().runOnUiThread(() -> {
-                if (cart == null || cart.getCartSize() == 0) {
+        CartDao.getInstance().getUserCart(getCurrentUserId(context), new MyCallBack<Cart>() {
+            @Override
+            public void onLoaded(Cart cart) {
+                if (cart == null || cart.cartSize() == 0) {
                     emptyTxt.setVisibility(LinearLayout.VISIBLE);
                     scrollView.setVisibility(LinearLayout.GONE);
                 }else {
                     List<Food> listFood = JsonHelper.parseJsonToList(cart.getListFood(), Food.class);
-                    RecyclerView.Adapter adapter = new CartListAdapter(listFood, changedFood -> {
-                        new Thread(() -> {
-                            Cart newCart = CartService.UpdateInCart(changedFood,db,context);
-                            getActivity().runOnUiThread(() -> {
-                                if (newCart.getCartSize() == 0) {
-                                    emptyTxt.setVisibility(LinearLayout.VISIBLE);
-                                    scrollView.setVisibility(LinearLayout.GONE);
-                                }
-                                calculateCart(newCart);
-                            });
-                        }).start();
-                    });
+                    RecyclerView.Adapter adapter = new CartListAdapter(listFood, CartFragment.this);
                     calculateCart(cart);
                     recyclerViewList.setAdapter(adapter);
-
                     emptyTxt.setVisibility(LinearLayout.GONE);
                     scrollView.setVisibility(LinearLayout.VISIBLE);
                 }
-            });
+            }
 
-
-        }).start();
-
-
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(context, "Server Error!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
     private void calculateCart(Cart cart) {
         if(cart == null) return;
-        double totalFee = cart.getTotalFee();
+        double totalFee = cart.totalFee();
         tax = (double)Math.round(totalFee* GlobalConstant.PERCENT_TAX *100)/100;
         itemTotal = (double)Math.round(totalFee*100)/100;
         total = (double)Math.round((itemTotal + tax + GlobalConstant.DELIVERY_FEE)*100)/100;
@@ -124,5 +109,39 @@ public class CartFragment extends Fragment {
         recyclerViewList = view.findViewById(R.id.view);
         scrollView = view.findViewById(R.id.scrollView);
         emptyTxt = view.findViewById(R.id.emptyTxt);
+    }
+
+    @Override
+    public void execute(Food changedFood) {
+        CartDao.getInstance().getUserCart(getCurrentUserId(getContext()), new MyCallBack<Cart>() {
+            @Override
+            public void onLoaded(Cart cart) {
+                if (cart !=null) {
+                    List<Food> foods = JsonHelper.parseJsonToList(cart.getListFood(),Food.class);
+                    for(Food f : foods) {
+                        if(f.getId().equals(changedFood.getId())) {
+                            if(changedFood.getNumberInCart() == 0) {
+                                foods.remove(f);
+                            }else {
+                                f.setNumberInCart(changedFood.getNumberInCart());
+                            }
+                            break;
+                        }
+                    }
+                    String listFoodJson = JsonHelper.parseListToJson(foods);
+                    cart.setListFood(listFoodJson);
+                    CartDao.getInstance().save(cart);
+                    if (cart.cartSize() == 0) {
+                        emptyTxt.setVisibility(LinearLayout.VISIBLE);
+                        scrollView.setVisibility(LinearLayout.GONE);
+                    }
+                    calculateCart(cart);
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(getContext(), "Sever Error!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

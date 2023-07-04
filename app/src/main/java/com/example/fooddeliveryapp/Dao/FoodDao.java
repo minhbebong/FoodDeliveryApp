@@ -1,33 +1,75 @@
 package com.example.fooddeliveryapp.Dao;
 
-import androidx.room.Dao;
-import androidx.room.Insert;
-import androidx.room.Query;
-
-import com.example.fooddeliveryapp.Entity.Cart;
 import com.example.fooddeliveryapp.Entity.Food;
+import com.example.fooddeliveryapp.Interface.MyCallBack;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
-@Dao
-public interface FoodDao {
+public class FoodDao {
+    private static FoodDao instance;
+    private FoodDao(){}
+    public static FoodDao getInstance(){
+        if(instance == null){
+            instance = new FoodDao();
+        }
+        return instance;
+    }
 
-    //find 5 food have the highest rating
-    @Query("SELECT * FROM food ORDER BY star DESC LIMIT 5")
-    List<Food> findTop5Food();
+    public void getTop5Food(MyCallBack<List<Food>> myCallBack) {
 
-    //find by id
-    @Query("SELECT * FROM food WHERE id = :id")
-    Food findById(int id);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("foods");
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                List<Food> foods = new ArrayList<>();
+                for (DataSnapshot food: dataSnapshot.getChildren()) {
+                    Food temp = food.getValue(Food.class);
+                    foods.add(temp);
+                }
+                foods.sort((o1, o2) -> {
+                    if(o1.getStar() > o2.getStar()){
+                        return 1;
+                    }else if(o1.getStar() < o2.getStar()){
+                        return -1;
+                    }else{
+                        return 0;
+                    }
+                });
+                if(foods.size() < 5) {
+                    myCallBack.onLoaded(foods);
+                }else {
+                    myCallBack.onLoaded(foods.subList(0, 5));
+                }
+            }
 
-    //find by title
-    @Query("SELECT * FROM food WHERE title = :title")
-    List<Food> findByTitle(String title);
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                myCallBack.onCancelled(databaseError);
+            }
+        });
+    }
 
-    //find by category
-    @Query("SELECT * FROM food WHERE category = :category")
-    List<Food> findByCategory(String category);
+    public void findById(String id, MyCallBack <Food> myCallBack) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("foods");
+        myRef.child(id).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Food food = dataSnapshot.getValue(Food.class);
+                myCallBack.onLoaded(food);
+            }
 
-    @Insert
-    void insertAll(Food... foods);
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                myCallBack.onCancelled(databaseError);
+            }
+        });
+    }
 }

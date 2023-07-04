@@ -1,45 +1,32 @@
 package com.example.fooddeliveryapp.Entity;
 
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
 
-@Entity
 public class Food implements java.io.Serializable{
-    @PrimaryKey(autoGenerate = true)
-    public int id;
+    private String id;
 
-    @ColumnInfo
-    public String title;
+    private String title;
 
-    @ColumnInfo
-    public String pic;
+    private String pic;
 
-    @ColumnInfo
-    public String description;
+    private String description;
 
-    @ColumnInfo
-    public Double fee;
+    private Double fee;
 
-    @ColumnInfo
-    public float star;
+    private float star;
 
-    @ColumnInfo
-    public int time;
+    private int time;
 
-    @ColumnInfo
-    public int calories;
+    private int calories;
 
-    @ColumnInfo
-    public int numberInCart;
+    private int numberInCart;
 
-    @ColumnInfo
-    public String category;
+    private String category;
 
     public Food() {
     }
 
-    public Food(String title, String pic, String description, Double fee, float star, int time, int calories, int numberInCart, String category) {
+    public Food(String id, String title, String pic, String description, Double fee, float star, int time, int calories, int numberInCart, String category) {
+        this.id = id;
         this.title = title;
         this.pic = pic;
         this.description = description;
@@ -51,11 +38,11 @@ public class Food implements java.io.Serializable{
         this.category = category;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -1,20 +1,13 @@
 package com.example.fooddeliveryapp.Entity;
 
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
 
-@Entity
 public class Category {
 
-    @PrimaryKey(autoGenerate = true)
-    public int id;
+    private String id;
 
-    @ColumnInfo
-    public String title;
+    private String title;
 
-    @ColumnInfo
-    public String pic;
+    private String pic;
 
 
     public Category() {
@@ -25,11 +18,11 @@ public class Category {
         this.pic = pic;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

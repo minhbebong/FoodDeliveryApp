@@ -1,34 +1,23 @@
 package com.example.fooddeliveryapp.Entity;
 
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
 
-
-@Entity
 public class User {
-    @PrimaryKey(autoGenerate = true)
-    public int id;
+    private String id;
 
-    @ColumnInfo(name = "full_name")
-    public String fullName;
+    private String fullName;
 
-    @ColumnInfo(name = "email")
-    public String email;
+    private String email;
 
-    @ColumnInfo(name = "password")
-    public String password;
+    private String password;
 
-    @ColumnInfo(name = "phone_number")
-    public String phoneNumber;
+    private String phoneNumber;
 
-    @ColumnInfo(name = "address")
-    public String address;
+    private String address;
 
     public User() {
     }
 
-    public User(int id, String fullName, String email, String password, String phoneNumber, String address) {
+    public User(String id, String fullName, String email, String password, String phoneNumber, String address) {
         this.id = id;
         this.fullName = fullName;
         this.email = email;
@@ -37,11 +26,11 @@ public class User {
         this.address = address;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -83,5 +72,17 @@ public class User {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", address='" + address + '\'' +
+                '}';
     }
 }

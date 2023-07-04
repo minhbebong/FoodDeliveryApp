@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.fooddeliveryapp.Dao.AppDatabase;
 import com.example.fooddeliveryapp.Helper.UserHelper;
 import com.example.fooddeliveryapp.R;
 
@@ -24,7 +23,7 @@ public class SplashActivity extends AppCompatActivity {
                 // Perform your background task here
 
                 // Init DB
-                AppDatabase.getInstance(getApplicationContext());
+//                AppDatabase.getInstance(getApplicationContext());
 
                 // Check if the user is logged in
                 boolean isLoggedIn = checkLoggedInStatus();
@@ -66,6 +65,6 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private boolean checkLoggedInStatus() {
-        return UserHelper.getCurrentUserId(this) != -1;
+        return !UserHelper.getCurrentUserId(this).equals("");
     }
 }
