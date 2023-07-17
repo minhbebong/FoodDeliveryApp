@@ -43,14 +43,64 @@ public class SettingFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        view.findViewById(R.id.btn_logout).setOnClickListener(v ->{
-            SharedPreferences sharedPreferences = getActivity().getSharedPreferences(GlobalConstant.PREFS_NAME, Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.clear();
-            editor.apply();
-            Intent intent = new Intent(getActivity(), IntroActivity.class);
-            startActivity(intent);
-            getActivity().finish();
+
+        view.findViewById(R.id.btn_privacy).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Chuyển đến màn hình Chính sách bảo mật
+                Intent intent = new Intent(getActivity(), PrivacyFragment.class);
+                startActivity(intent);
+            }
+        });
+
+
+        view.findViewById(R.id.btn_contact).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getActivity(), ContactFragment.class);
+                startActivity(intent);
+            }
+        });
+
+        view.findViewById(R.id.btn_about_us).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getActivity(), AboutUsFragment.class);
+                startActivity(intent);
+            }
+        });
+
+        view.findViewById(R.id.btn_faq).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getActivity(), FaqFragment.class);
+                startActivity(intent);
+            }
+        });
+
+        view.findViewById(R.id.btn_logout).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logout();
+            }
         });
     }
+
+    private void logout() {
+        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences(GlobalConstant.PREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.apply();
+
+        Intent intent = new Intent(requireActivity(), IntroActivity.class);
+        startActivity(intent);
+        requireActivity().finish();
+    }
 }
+
+
+
+
