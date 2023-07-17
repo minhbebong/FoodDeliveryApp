@@ -24,12 +24,16 @@ import com.example.fooddeliveryapp.Adapter.OrderAdapter;
 import com.example.fooddeliveryapp.Dao.OrderDao;
 import com.example.fooddeliveryapp.Entity.Food;
 import com.example.fooddeliveryapp.Entity.Order;
+import com.example.fooddeliveryapp.Helper.DateHelper;
 import com.example.fooddeliveryapp.Helper.JsonHelper;
 import com.example.fooddeliveryapp.Interface.MyCallBack;
 import com.example.fooddeliveryapp.Interface.OnItemClickListener;
 import com.example.fooddeliveryapp.R;
 import com.google.firebase.database.DatabaseError;
 
+import java.text.ParseException;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class OrderFragment extends Fragment implements OnItemClickListener<Order> {
@@ -66,9 +70,12 @@ public class OrderFragment extends Fragment implements OnItemClickListener<Order
             @Override
             public void onLoaded(List<Order> data) {
                 if (data == null || data.size() == 0) {
+                    RecyclerView.Adapter adapter = new OrderAdapter(Collections.emptyList(), OrderFragment.this);
+                    recyclerViewList.setAdapter(adapter);
                     emptyTxt.setVisibility(LinearLayout.VISIBLE);
                     recyclerViewList.setVisibility(LinearLayout.GONE);
                 }else {
+                    sortOrders(data);
                     RecyclerView.Adapter adapter = new OrderAdapter(data, OrderFragment.this);
                     recyclerViewList.setAdapter(adapter);
                     emptyTxt.setVisibility(LinearLayout.GONE);
@@ -86,5 +93,15 @@ public class OrderFragment extends Fragment implements OnItemClickListener<Order
     @Override
     public void onItemClick(Order order) {
         startActivity(new Intent(getContext(), OrderDetails.class).putExtra("order", order));
+    }
+
+    private void sortOrders(List<Order> orderList) {
+        Collections.sort(orderList, (order1, order2) -> {
+            try {
+                return DateHelper.parseDate(order2.getDate()).compareTo(DateHelper.parseDate(order1.getDate()));
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 }
