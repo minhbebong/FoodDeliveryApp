@@ -22,21 +22,30 @@ import android.widget.Toast;
 import com.example.fooddeliveryapp.Adapter.CartListAdapter;
 import com.example.fooddeliveryapp.Constant.GlobalConstant;
 import com.example.fooddeliveryapp.Dao.CartDao;
+import com.example.fooddeliveryapp.Dao.OrderDao;
 import com.example.fooddeliveryapp.Entity.Cart;
 import com.example.fooddeliveryapp.Entity.Food;
+import com.example.fooddeliveryapp.Entity.Order;
+import com.example.fooddeliveryapp.Helper.DateHelper;
 import com.example.fooddeliveryapp.Helper.JsonHelper;
+import com.example.fooddeliveryapp.Helper.UserHelper;
 import com.example.fooddeliveryapp.Interface.CartChange;
 import com.example.fooddeliveryapp.Interface.MyCallBack;
 import com.example.fooddeliveryapp.R;
 import com.google.firebase.database.DatabaseError;
 
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 public class CartFragment extends Fragment implements CartChange {
     private RecyclerView recyclerViewList;
     private TextView totalFeeTxt,taxTxt,deliveryFeeTxt,totalTxt,emptyTxt;
-    private double tax,total,itemTotal;
+    private double tax,delivery,total,itemTotal;
     private ConstraintLayout bill;
+
+    private Cart myCart;
 
 
     public CartFragment() {
@@ -67,9 +76,12 @@ public class CartFragment extends Fragment implements CartChange {
             @Override
             public void onLoaded(Cart cart) {
                 if (cart == null || cart.cartSize() == 0) {
+                    RecyclerView.Adapter adapter = new CartListAdapter(Collections.emptyList(), CartFragment.this);
+                    recyclerViewList.setAdapter(adapter);
                     emptyTxt.setVisibility(LinearLayout.VISIBLE);
                     bill.setVisibility(LinearLayout.GONE);
                 }else {
+                    myCart =cart;
                     List<Food> listFood = JsonHelper.parseJsonToList(cart.getListFood(), Food.class);
                     RecyclerView.Adapter adapter = new CartListAdapter(listFood, CartFragment.this);
                     calculateCart(cart);
@@ -89,12 +101,13 @@ public class CartFragment extends Fragment implements CartChange {
         if(cart == null) return;
         double totalFee = cart.totalFee();
         tax = (double)Math.round(totalFee* GlobalConstant.PERCENT_TAX *100)/100;
+        delivery = (double)Math.round(totalFee* GlobalConstant.DELIVERY_FEE *100)/100;
         itemTotal = (double)Math.round(totalFee*100)/100;
-        total = (double)Math.round((itemTotal + tax + GlobalConstant.DELIVERY_FEE)*100)/100;
+        total = (double)Math.round((itemTotal + tax + delivery)*100)/100;
 
         totalFeeTxt.setText("$"+itemTotal);
         taxTxt.setText("$"+tax);
-        deliveryFeeTxt.setText("$"+ GlobalConstant.DELIVERY_FEE);
+        deliveryFeeTxt.setText("$"+ delivery);
         totalTxt.setText("$"+total);
 
     }
@@ -107,6 +120,7 @@ public class CartFragment extends Fragment implements CartChange {
         recyclerViewList = view.findViewById(R.id.view);
         bill = view.findViewById(R.id.Bill);
         emptyTxt = view.findViewById(R.id.emptyTxt);
+        view.findViewById(R.id.btn_checkout).setOnClickListener(this::checkOut);
     }
 
     @Override
@@ -141,5 +155,22 @@ public class CartFragment extends Fragment implements CartChange {
                 Toast.makeText(getContext(), "Sever Error!", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void checkOut(View v) {
+        if(myCart != null && myCart.cartSize() >0) {
+            Order order = new Order();
+            order.setId(UUID.randomUUID().toString());
+            order.setUserId(UserHelper.getCurrentUserId(v.getContext()));
+            order.setListFood(myCart.getListFood());
+            order.setDate(DateHelper.getCurrentDate());
+
+            myCart.setListFood(JsonHelper.parseListToJson(Collections.emptyList()));
+
+            OrderDao.getInstance().save(order);
+            CartDao.getInstance().save(myCart);
+            initList(v.getContext());
+            Toast.makeText(getContext(), "Order Successfully!", Toast.LENGTH_SHORT).show();
+        }
     }
 }

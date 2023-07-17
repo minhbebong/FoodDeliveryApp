@@ -104,15 +104,8 @@ public class HomeFragment extends Fragment {
 
     private void welcomeText(View view) {
         txtWelcome = view.findViewById(R.id.txt_welcome);
-        UserDao.getInstance().findById(UserHelper.getCurrentUserId(view.getContext()), new MyCallBack<User>() {
-            @Override
-            public void onLoaded(User data) {
-                txtWelcome.setText("Welcome, "+ data.getFullName());
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(getContext(), "Server Error !", Toast.LENGTH_SHORT).show();
-            }
-        });
+
+        txtWelcome.setText("Welcome, "+ UserHelper.getCurrentUser(view.getContext()).getFullName());
+
     }
 }

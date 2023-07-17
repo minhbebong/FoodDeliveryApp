@@ -38,7 +38,7 @@ public class RecommendedAdapter extends RecyclerView.Adapter<RecommendedAdapter.
     public void onBindViewHolder(@NonNull RecommendedHolder holder, int position) {
         Food Food = foods.get(position);
         holder.title.setText(Food.getTitle());
-        holder.fee.setText(Food.getFee().toString());
+        holder.fee.setText("$"+Food.getFee().toString());
         int drawableResourceId = holder.itemView.getContext()
                 .getResources().getIdentifier(Food.getPic(), "drawable", holder.itemView.getContext().getPackageName());
         //get image Resource in drawable folder

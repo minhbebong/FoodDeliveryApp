@@ -17,4 +17,12 @@ public class JsonHelper {
         Type listType = TypeToken.getParameterized(List.class, clazz).getType();
         return gson.fromJson(json, listType);
     }
+
+    public static <T> String parseObjectToJson(T object) {
+        return gson.toJson(object);
+    }
+
+    public static <T> T parseJsonToObject(String json, Class<T> clazz) {
+        return gson.fromJson(json, clazz);
+    }
 }
