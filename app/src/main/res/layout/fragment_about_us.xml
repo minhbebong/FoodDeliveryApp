@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragment.FaqFragment"
+    android:orientation="vertical"
+    android:background="#FFFFFF">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="About Us"
+                android:textColor="@color/orange1"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="16dp" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="At our delivery app, we believe that good food should be accessible to everyone, regardless of their location or busy schedules. With just a few taps on your smartphone, you can browse through a diverse selection of cuisines and restaurants, all ready to cater to your unique tastes. From hearty burgers to exotic sushi, comforting pizzas to spicy curries, we have a vast range of options to satisfy every craving.
+
+\nWe have partnered with an extensive network of local restaurants and culinary experts who are passionate about delivering high-quality meals to your doorstep. Our team meticulously handpicks each restaurant, ensuring that they maintain exceptional standards in terms of taste, hygiene, and customer service. This means that when you order through our app, you can expect nothing less than the best.
+
+\nOur user-friendly interface makes it incredibly easy to navigate through the app. You can browse menus, read reviews, and compare prices to make an informed decision. We provide detailed descriptions and mouthwatering food images to help you make the perfect choice. Customizing your order is a breeze, allowing you to add special instructions or dietary preferences with just a few taps.
+
+\nWe understand that reliability and timeliness are crucial when it comes to food delivery. That's why we have implemented a robust logistics system to ensure your food reaches you hot and fresh, right on time. Real-time order tracking keeps you informed about the status of your delivery, so you can eagerly anticipate the arrival of your delicious meal."
+                android:textSize="20dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

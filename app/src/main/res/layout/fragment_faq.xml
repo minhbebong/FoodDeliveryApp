@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragment.FaqFragment"
+    android:orientation="vertical"
+    android:background="#FFFFFF">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="FAQs"
+                android:textColor="@color/orange1"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="16dp" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Q: How does the food delivery app work?
+\nA: Our food delivery app connects you with local restaurants in your area. Simply download the app, create an account, and enter your location. Browse through the available restaurants, select your desired dishes, customize your order if needed, and proceed to checkout. Once your order is confirmed, our delivery partners will pick up your food and deliver it to your specified location.
+\nQ: Is there a minimum order requirement?
+\nA: Minimum order requirements may vary depending on the restaurant you choose. Some restaurants may have a minimum order amount to qualify for delivery. You can find this information on the restaurant page or during the checkout process.
+\nQ: How long does it take for the food to be delivered?
+\nA: Delivery times can vary depending on factors such as distance, traffic, and the restaurant's preparation time.
+\nQ: Is there a delivery fee?
+\nA: Delivery fees may vary depending on the restaurant and your location. Some restaurants offer free delivery for orders above a certain amount, while others may have a flat fee or a fee based on the distance. The app will display any applicable delivery fees during the checkout process.
+\nQ: Can I cancel my order?
+\nA: Order cancellation policies may vary depending on the restaurant and the stage of the order process. If you need to cancel your order, we recommend contacting our customer support team as soon as possible to check if cancellation is possible.
+"
+                android:textSize="20dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
