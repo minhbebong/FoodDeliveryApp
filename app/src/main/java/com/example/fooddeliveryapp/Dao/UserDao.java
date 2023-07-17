@@ -62,7 +62,7 @@ public class UserDao {
         });
     }
 
-    public void insert(User user){
+    public void save(User user){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("users");
         myRef.child(user.getId()).setValue(user);

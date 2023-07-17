@@ -50,7 +50,7 @@ public class RegisterActivity extends AppCompatActivity {
                             user.setAddress(edt_address.getText().toString());
                             user.setPassword(edt_password.getText().toString());
                             user.setPhoneNumber(edt_phonenumber.getText().toString());
-                            UserDao.getInstance().insert(user);
+                            UserDao.getInstance().save(user);
                             runOnUiThread(() -> {
                                 Toast.makeText(getApplicationContext(), "Registration successful!", Toast.LENGTH_SHORT).show();
                                 finish();
