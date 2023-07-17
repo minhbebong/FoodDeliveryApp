@@ -35,7 +35,7 @@ import java.util.List;
 public class CartFragment extends Fragment implements CartChange {
     private RecyclerView recyclerViewList;
     private TextView totalFeeTxt,taxTxt,deliveryFeeTxt,totalTxt,emptyTxt;
-    private double tax,total,itemTotal;
+    private double tax,delivery,total,itemTotal;
     private ConstraintLayout bill;
 
 
@@ -89,12 +89,13 @@ public class CartFragment extends Fragment implements CartChange {
         if(cart == null) return;
         double totalFee = cart.totalFee();
         tax = (double)Math.round(totalFee* GlobalConstant.PERCENT_TAX *100)/100;
+        delivery = (double)Math.round(totalFee* GlobalConstant.DELIVERY_FEE *100)/100;
         itemTotal = (double)Math.round(totalFee*100)/100;
-        total = (double)Math.round((itemTotal + tax + GlobalConstant.DELIVERY_FEE)*100)/100;
+        total = (double)Math.round((itemTotal + tax + delivery)*100)/100;
 
         totalFeeTxt.setText("$"+itemTotal);
         taxTxt.setText("$"+tax);
-        deliveryFeeTxt.setText("$"+ GlobalConstant.DELIVERY_FEE);
+        deliveryFeeTxt.setText("$"+ delivery);
         totalTxt.setText("$"+total);
 
     }
