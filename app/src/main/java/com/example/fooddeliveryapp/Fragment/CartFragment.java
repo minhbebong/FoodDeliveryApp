@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,7 +16,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,11 +25,9 @@ import com.example.fooddeliveryapp.Dao.CartDao;
 import com.example.fooddeliveryapp.Entity.Cart;
 import com.example.fooddeliveryapp.Entity.Food;
 import com.example.fooddeliveryapp.Helper.JsonHelper;
-import com.example.fooddeliveryapp.Helper.UserHelper;
 import com.example.fooddeliveryapp.Interface.CartChange;
 import com.example.fooddeliveryapp.Interface.MyCallBack;
 import com.example.fooddeliveryapp.R;
-import com.example.fooddeliveryapp.Service.CartService;
 import com.google.firebase.database.DatabaseError;
 
 import java.util.List;
@@ -38,7 +36,7 @@ public class CartFragment extends Fragment implements CartChange {
     private RecyclerView recyclerViewList;
     private TextView totalFeeTxt,taxTxt,deliveryFeeTxt,totalTxt,emptyTxt;
     private double tax,total,itemTotal;
-    private ScrollView scrollView;
+    private ConstraintLayout bill;
 
 
     public CartFragment() {
@@ -70,14 +68,14 @@ public class CartFragment extends Fragment implements CartChange {
             public void onLoaded(Cart cart) {
                 if (cart == null || cart.cartSize() == 0) {
                     emptyTxt.setVisibility(LinearLayout.VISIBLE);
-                    scrollView.setVisibility(LinearLayout.GONE);
+                    bill.setVisibility(LinearLayout.GONE);
                 }else {
                     List<Food> listFood = JsonHelper.parseJsonToList(cart.getListFood(), Food.class);
                     RecyclerView.Adapter adapter = new CartListAdapter(listFood, CartFragment.this);
                     calculateCart(cart);
                     recyclerViewList.setAdapter(adapter);
                     emptyTxt.setVisibility(LinearLayout.GONE);
-                    scrollView.setVisibility(LinearLayout.VISIBLE);
+                    bill.setVisibility(LinearLayout.VISIBLE);
                 }
             }
 
@@ -107,7 +105,7 @@ public class CartFragment extends Fragment implements CartChange {
         deliveryFeeTxt = view.findViewById(R.id.deliveryFeeTxt);
         totalTxt = view.findViewById(R.id.totalTxt);
         recyclerViewList = view.findViewById(R.id.view);
-        scrollView = view.findViewById(R.id.scrollView);
+        bill = view.findViewById(R.id.Bill);
         emptyTxt = view.findViewById(R.id.emptyTxt);
     }
 
@@ -133,7 +131,7 @@ public class CartFragment extends Fragment implements CartChange {
                     CartDao.getInstance().save(cart);
                     if (cart.cartSize() == 0) {
                         emptyTxt.setVisibility(LinearLayout.VISIBLE);
-                        scrollView.setVisibility(LinearLayout.GONE);
+                        bill.setVisibility(LinearLayout.GONE);
                     }
                     calculateCart(cart);
                 }
