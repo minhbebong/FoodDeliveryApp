@@ -29,91 +29,107 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:text="Dat Lai"
-                android:textSize="20dp"
+                android:textSize="25dp"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 />
+
             <LinearLayout
-                android:background="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
                 android:layout_marginTop="40dp"
+                android:layout_marginEnd="20dp"
+                android:background="@color/white"
                 android:orientation="vertical"
-                android:padding="15dp">
+                android:padding="20dp">
+
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
 
-                    <TextView app:backgroundTint="@color/white"
+                    <TextView
+                        android:id="@+id/btn_privacy"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
                         android:layout_centerVertical="true"
-                        android:text="Privacy Policy"
+                        android:layout_marginStart="20dp"
                         android:background="@color/white"
-                        android:textColor="@color/orange1"
-                        android:textStyle="bold"
                         android:clickable="true"
-                        android:id="@+id/btn_privacy"
+                        android:text="Privacy Policy"
+                        android:textColor="@color/orange1"
+                        android:textSize="17dp"
+                        android:textStyle="bold"
+                        app:backgroundTint="@color/white"
 
                         />
+
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/right_arrow_1"
                         android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"/>
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/right_arrow_1" />
 
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
 
 
-                    <TextView app:backgroundTint="@color/white"
-
+                    <TextView
                         android:layout_width="wrap_content"
 
                         android:layout_height="wrap_content"
+
                         android:layout_centerVertical="true"
                         android:layout_marginStart="20dp"
                         android:background="@color/white"
+                        android:clickable="true"
                         android:text="Text Size"
                         android:textColor="@color/orange1"
+                        android:textSize="17dp"
                         android:textStyle="bold"
-                        android:clickable="true"
+                        app:backgroundTint="@color/white"
 
                         />
+
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/right_arrow_1"
                         android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"/>
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/right_arrow_1" />
 
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <TextView app:backgroundTint="@color/white"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
 
+                    <TextView
                         android:layout_width="wrap_content"
+
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
                         android:layout_centerVertical="true"
+                        android:layout_marginStart="20dp"
+                        android:clickable="true"
                         android:text="Languages"
                         android:textColor="@color/orange1"
+                        android:textSize="17dp"
                         android:textStyle="bold"
-                        android:clickable="true"
-                        />
+                        app:backgroundTint="@color/white" />
+
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/right_arrow_1"
                         android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"/>
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/right_arrow_1" />
 
                 </RelativeLayout>
             </LinearLayout>
@@ -126,11 +142,12 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginTop="40dp"
                 android:orientation="vertical"
-                android:padding="15dp">
+                android:padding="20dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
 
                     <TextView app:backgroundTint="@color/white"
 
@@ -142,6 +159,7 @@
                         android:background="@color/white"
                         android:id="@+id/btn_contact"
                         android:clickable="true"
+                        android:textSize="17dp"
 
                         android:textColor="@color/orange1"
                         android:textStyle="bold"
@@ -157,7 +175,8 @@
                 </RelativeLayout>
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
 
                     <TextView app:backgroundTint="@color/white"
 
@@ -168,6 +187,7 @@
                         android:text="About Us"
                         android:background="@color/white"
                         android:id="@+id/btn_about_us"
+                        android:textSize="17dp"
 
                         android:textColor="@color/orange1"
                         android:textStyle="bold"
@@ -183,7 +203,8 @@
                 </RelativeLayout>
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
 
                     <TextView app:backgroundTint="@color/white"
 
@@ -194,6 +215,7 @@
                         android:text="FAQs"
                         android:background="@color/white"
                         android:clickable="true"
+                        android:textSize="17dp"
 
                         android:textColor="@color/orange1"
                         android:textStyle="bold"
@@ -208,27 +230,42 @@
 
                 </RelativeLayout>
 
+             </LinearLayout>
+
+            <LinearLayout
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="40dp"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+
+                    <TextView app:backgroundTint="@color/white"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_centerVertical="true"
+                        android:text="Logout"
+                        android:background="@color/white"
+                        android:clickable="true"
+                        android:textSize="17dp"
+                        android:textColor="@color/orange1"
+                        android:textStyle="bold"
+                        android:id="@+id/btn_logout"
+                        />
+                </RelativeLayout>
+
+
 
             </LinearLayout>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginTop="40dp"
-                android:paddingStart="20dp"
-                android:layout_gravity="center"
-                android:background="@drawable/round_back_secondary_100"
-                android:text="Logout"
-                android:paddingEnd="20dp"
-                android:textColor="@color/orange1"
-                android:textStyle="bold"
-                android:id="@+id/btn_logout"
-                android:textAlignment="center"
-                android:paddingTop="10dp"
-                android:clickable="true">
-
-
-            </TextView>
-
         </LinearLayout>
     </ScrollView>
 
