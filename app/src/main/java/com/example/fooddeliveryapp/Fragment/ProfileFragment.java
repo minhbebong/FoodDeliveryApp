@@ -81,4 +81,10 @@ public class ProfileFragment extends Fragment {
         address.setText(user.getAddress());
 
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initData(getView());
+    }
 }

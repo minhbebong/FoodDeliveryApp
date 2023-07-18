@@ -72,4 +72,63 @@ public class FoodDao {
             }
         });
     }
+
+    public void searchByCategory(String search,MyCallBack<List<Food>> myCallBack) {
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("foods");
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                List<Food> foods = new ArrayList<>();
+                for (DataSnapshot food: dataSnapshot.getChildren()) {
+                    Food temp = food.getValue(Food.class);
+                    if(temp.getCategory().equalsIgnoreCase(search)){
+                        foods.add(temp);
+                    }
+                }
+                myCallBack.onLoaded(foods);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                myCallBack.onCancelled(databaseError);
+            }
+        });
+    }
+
+    public void getTop10Food(MyCallBack<List<Food>> myCallBack) {
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("foods");
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                List<Food> foods = new ArrayList<>();
+                for (DataSnapshot food: dataSnapshot.getChildren()) {
+                    Food temp = food.getValue(Food.class);
+                    foods.add(temp);
+                }
+                foods.sort((o1, o2) -> {
+                    if(o1.getStar() > o2.getStar()){
+                        return 1;
+                    }else if(o1.getStar() < o2.getStar()){
+                        return -1;
+                    }else{
+                        return 0;
+                    }
+                });
+                if(foods.size() < 10) {
+                    myCallBack.onLoaded(foods);
+                }else {
+                    myCallBack.onLoaded(foods.subList(0, 10));
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                myCallBack.onCancelled(databaseError);
+            }
+        });
+    }
 }
