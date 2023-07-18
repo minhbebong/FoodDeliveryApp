@@ -1,38 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/frameLayout3"
-        tools:context=".Fragment.SettingFragment"
-        android:orientation="vertical"
-        android:background="@color/orange1">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout3"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/orange1"
+    android:orientation="vertical"
+    tools:context=".Fragment.SettingFragment">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="125dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:text="Dat Lai"
-                android:textSize="25dp"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -42,7 +31,7 @@
                 android:layout_marginEnd="20dp"
                 android:background="@color/white"
                 android:orientation="vertical"
-                android:padding="20dp">
+                android:padding="10dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -135,110 +124,12 @@
             </LinearLayout>
 
             <LinearLayout
-                android:background="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
                 android:layout_marginTop="40dp"
-                android:orientation="vertical"
-                android:padding="20dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp">
-
-                    <TextView app:backgroundTint="@color/white"
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_centerVertical="true"
-                        android:text="Contact to us"
-                        android:background="@color/white"
-                        android:id="@+id/btn_contact"
-                        android:clickable="true"
-                        android:textSize="17dp"
-
-                        android:textColor="@color/orange1"
-                        android:textStyle="bold"
-                        />
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/right_arrow_1"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"/>
-
-
-                </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp">
-
-                    <TextView app:backgroundTint="@color/white"
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_centerVertical="true"
-                        android:text="About Us"
-                        android:background="@color/white"
-                        android:id="@+id/btn_about_us"
-                        android:textSize="17dp"
-
-                        android:textColor="@color/orange1"
-                        android:textStyle="bold"
-                        android:clickable="true"
-                        />
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/right_arrow_1"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"/>
-
-                </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp">
-
-                    <TextView app:backgroundTint="@color/white"
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_centerVertical="true"
-                        android:text="FAQs"
-                        android:background="@color/white"
-                        android:clickable="true"
-                        android:textSize="17dp"
-
-                        android:textColor="@color/orange1"
-                        android:textStyle="bold"
-                        android:id="@+id/btn_faq"
-                        />
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/right_arrow_1"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"/>
-
-                </RelativeLayout>
-
-             </LinearLayout>
-
-            <LinearLayout
+                android:layout_marginEnd="20dp"
                 android:background="@color/white"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginTop="40dp"
                 android:orientation="vertical"
                 android:padding="10dp">
 
@@ -247,28 +138,130 @@
                     android:layout_height="wrap_content"
                     android:padding="10dp">
 
-                    <TextView app:backgroundTint="@color/white"
+                    <TextView
+                        android:id="@+id/btn_contact"
 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
                         android:layout_centerVertical="true"
-                        android:text="Logout"
+                        android:layout_marginStart="20dp"
                         android:background="@color/white"
                         android:clickable="true"
-                        android:textSize="17dp"
+                        android:text="Contact to us"
                         android:textColor="@color/orange1"
+                        android:textSize="17dp"
+
                         android:textStyle="bold"
-                        android:id="@+id/btn_logout"
-                        />
+                        app:backgroundTint="@color/white" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/right_arrow_1" />
+
+
                 </RelativeLayout>
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/btn_about_us"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="20dp"
+                        android:background="@color/white"
+                        android:clickable="true"
+                        android:text="About Us"
+                        android:textColor="@color/orange1"
+
+                        android:textSize="17dp"
+                        android:textStyle="bold"
+                        app:backgroundTint="@color/white" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/right_arrow_1" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/btn_faq"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="20dp"
+                        android:background="@color/white"
+                        android:clickable="true"
+                        android:text="FAQs"
+                        android:textColor="@color/orange1"
+
+                        android:textSize="17dp"
+                        android:textStyle="bold"
+                        app:backgroundTint="@color/white" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/right_arrow_1" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="20dp"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/btn_logout"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="20dp"
+                        android:background="@color/white"
+                        android:clickable="true"
+                        android:text="Logout"
+                        android:textColor="@color/orange1"
+                        android:textSize="17dp"
+                        android:textStyle="bold"
+                        app:backgroundTint="@color/white" />
+                </RelativeLayout>
 
 
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
-    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 

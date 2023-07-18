@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.fooddeliveryapp.Constant.GlobalConstant;
+import com.example.fooddeliveryapp.Helper.JsonHelper;
 import com.example.fooddeliveryapp.Interface.MyCallBack;
 import com.example.fooddeliveryapp.Dao.UserDao;
 import com.example.fooddeliveryapp.Entity.User;
@@ -36,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
                         SharedPreferences sharedPreferences = getSharedPreferences(GlobalConstant.PREFS_NAME, Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString(GlobalConstant.CURRENT_USER, user.getId() + "");
+                        editor.putString(GlobalConstant.USER_OBJ, JsonHelper.parseObjectToJson(user));
                         editor.apply();
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
                         finish();

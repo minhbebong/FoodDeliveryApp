@@ -1,6 +1,7 @@
 package com.example.fooddeliveryapp.Entity;
 
 
+import com.example.fooddeliveryapp.Constant.GlobalConstant;
 import com.example.fooddeliveryapp.Helper.JsonHelper;
 
 import java.io.Serializable;
@@ -62,5 +63,17 @@ public class Order implements Serializable {
             total += list.get(i).getNumberInCart() * list.get(i).getFee();
         }
         return total;
+    }
+
+    public double totalBill() {
+        double totalFee = totalFee();
+        double tax = (double)Math.round(totalFee* GlobalConstant.PERCENT_TAX *100)/100;
+        double delivery = (double)Math.round(totalFee* GlobalConstant.DELIVERY_FEE *100)/100;
+        double  itemTotal = (double)Math.round(totalFee*100)/100;
+        return  (double)Math.round((itemTotal + tax + delivery)*100)/100;
+    }
+
+    public List<Food> parseListFood(){
+        return JsonHelper.parseJsonToList(listFood, Food.class);
     }
 }

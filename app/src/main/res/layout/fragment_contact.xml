@@ -23,24 +23,17 @@
                 android:layout_height="wrap_content"
                 android:text="Contact to Us"
                 android:textColor="@color/orange1"
-                android:textSize="20sp"
+                android:textSize="30dp"
                 android:textStyle="bold"
                 android:layout_marginBottom="16dp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Phone:02412010201"
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Email:contact@deliveryfood.com"
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Instagram:food_deliveryapp1"
+                android:text="Phone:02412010201
+                \nEmail:contact@deliveryfood.com
+                \nInstagram:food_deliveryapp1"
+                android:textSize="20dp"
                 />
 
 
