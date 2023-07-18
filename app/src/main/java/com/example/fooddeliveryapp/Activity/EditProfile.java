@@ -2,12 +2,17 @@ package com.example.fooddeliveryapp.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.fooddeliveryapp.Constant.GlobalConstant;
 import com.example.fooddeliveryapp.Dao.UserDao;
 import com.example.fooddeliveryapp.Entity.User;
+import com.example.fooddeliveryapp.Helper.JsonHelper;
+import com.example.fooddeliveryapp.Helper.UserHelper;
 import com.example.fooddeliveryapp.R;
 
 public class EditProfile extends AppCompatActivity {
@@ -31,6 +36,10 @@ public class EditProfile extends AppCompatActivity {
             user.setPhoneNumber(phone.getText().toString());
             user.setAddress(address.getText().toString());
             UserDao.getInstance().save(user);
+            SharedPreferences sharedPreferences = getSharedPreferences(GlobalConstant.PREFS_NAME, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString(GlobalConstant.USER_OBJ, JsonHelper.parseObjectToJson(user));
+            editor.apply();
             Toast.makeText(this, "Update Successfully!", Toast.LENGTH_SHORT).show();
         });
     }

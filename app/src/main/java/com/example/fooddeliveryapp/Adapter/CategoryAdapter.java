@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.fooddeliveryapp.Entity.Category;
+import com.example.fooddeliveryapp.Fragment.HomeFragment;
+import com.example.fooddeliveryapp.Interface.OnItemClickListener;
 import com.example.fooddeliveryapp.R;
 
 import java.util.List;
@@ -19,9 +21,12 @@ import java.util.List;
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryHolder>{
 
     List<Category> categories;
+    OnItemClickListener listener;
 
-    public CategoryAdapter(List<Category> categories) {
+    public CategoryAdapter(List<Category> categories, OnItemClickListener<String> listener) {
         this.categories = categories;
+        this.listener = listener;
+
     }
 
     @NonNull
@@ -54,6 +59,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
             categoryName = itemView.findViewById(R.id.category_txt);
             categoryImage = itemView.findViewById(R.id.category_pic);
             mainLayout = itemView.findViewById(R.id.main_layout);
+            itemView.setOnClickListener(v -> listener.onItemClick(categories.get(getAdapterPosition()).getTitle()));
         }
     }
 }
