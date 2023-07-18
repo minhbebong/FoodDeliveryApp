@@ -1,0 +1,386 @@
+{
+  "advertisments": {
+    "test": "Hot Summer Sale: Up to 50% Off on Everything!"
+  },
+  "carts": {
+    "554382b6-0109-412f-ae19-c83d6b24953a": {
+      "id": "554382b6-0109-412f-ae19-c83d6b24953a",
+      "listFood": "[{\"calories\":800,\"category\":\"Burger\",\"description\":\"beef, cheese, tomato, onion, lettuce, ketchup, mayonnaise, mustard, pickles\",\"fee\":10.0,\"id\":\"817053f9-7883-448c-8c81-93ea42cf6cae\",\"numberInCart\":2,\"pic\":\"burger\",\"star\":4.0,\"time\":15,\"title\":\"Burger\"}]",
+      "userId": "a3e89b58-2a7d-466a-9279-3a0cb6b1b95c"
+    },
+    "785b467c-b6b9-4145-9d66-3e027a581c99": {
+      "id": "785b467c-b6b9-4145-9d66-3e027a581c99",
+      "listFood": "[{\"calories\":800,\"category\":\"Burger\",\"description\":\"beef, cheese, tomato, onion, lettuce, ketchup, mayonnaise, mustard, pickles\",\"fee\":10.0,\"id\":\"817053f9-7883-448c-8c81-93ea42cf6cae\",\"numberInCart\":1,\"pic\":\"burger\",\"star\":4.0,\"time\":15,\"title\":\"Burger\"},{\"calories\":1000,\"category\":\"Pizza\",\"description\":\"slices pepperoni ,mozzarella cheese, pizza sauce, pizza dough\",\"fee\":13.0,\"id\":\"dd4dd6de-fcb4-46f4-9300-e38a23312955\",\"numberInCart\":1,\"pic\":\"pizza1\",\"star\":5.0,\"time\":20,\"title\":\"Pepperoni Pizza\"},{\"calories\":900,\"category\":\"Pizza\",\"description\":\"mozzarella cheese, pizza sauce, pizza dough, onion, tomato, mushroom, bell pepper, olive\",\"fee\":12.0,\"id\":\"d3649c9a-5ae4-4131-a201-d4d3b8da0666\",\"numberInCart\":1,\"pic\":\"pizza3\",\"star\":4.0,\"time\":20,\"title\":\"Vegetable Pizza\"}]",
+      "userId": "4796b67d-f8d1-4628-b6f0-419e8fef3cdf"
+    }
+  },
+  "categories": {
+    "0dd1bf14-f35b-40fe-906a-b08ee8d86f39": {
+      "id": "0dd1bf14-f35b-40fe-906a-b08ee8d86f39",
+      "pic": "cat_2",
+      "title": "Burger"
+    },
+    "36499228-b8ad-4168-9f65-8d17136acb7a": {
+      "id": "36499228-b8ad-4168-9f65-8d17136acb7a",
+      "pic": "cat_5",
+      "title": "Donut"
+    },
+    "9f5b3e73-f066-40fe-b3f1-f4d30dd29c31": {
+      "id": "9f5b3e73-f066-40fe-b3f1-f4d30dd29c31",
+      "pic": "cat_4",
+      "title": "Drink"
+    },
+    "a0694da5-30bb-44e4-9e3c-9640dcccaa2a": {
+      "id": "a0694da5-30bb-44e4-9e3c-9640dcccaa2a",
+      "pic": "cat_1",
+      "title": "Pizza"
+    },
+    "ad646f0b-50c8-4895-9f9b-fef9d08875ff": {
+      "id": "ad646f0b-50c8-4895-9f9b-fef9d08875ff",
+      "pic": "cat_3",
+      "title": "HotDog"
+    }
+  },
+  "foods": {
+    "016a70f0-248d-11ee-be56-0242ac120002": {
+      "calories": 750,
+      "category": "Burger",
+      "description": "A flavorful pizza topped with mozzarella cheese, flavorful pizza sauce, fresh onion slices, ripe tomato slices, sautéed mushrooms, colorful bell peppers, and sliced olives. Baked to perfection on a crispy pizza dough.",
+      "fee": 15,
+      "id": "016a70f0-248d-11ee-be56-0242ac120002",
+      "numberInCart": 0,
+      "pic": "burger1",
+      "star": 5,
+      "time": 16,
+      "title": "Luger Burger"
+    },
+    "1136d306-248e-11ee-be56-0242ac120002": {
+      "calories": 60,
+      "category": "Drink",
+      "description": "A refreshing drink made with fresh mint, zesty orange, a hint of sugar, freshly squeezed orange juice, and served over a cup of ice cubes. Quench your thirst with this invigorating beverage.",
+      "fee": 12,
+      "id": "1136d306-248e-11ee-be56-0242ac120002",
+      "numberInCart": 0,
+      "pic": "drink2",
+      "star": 4,
+      "time": 15,
+      "title": "Gin and Tonic"
+    },
+    "1d52f22e-2488-11ee-be56-0242ac120002": {
+      "calories": 200,
+      "category": "HotDog",
+      "description": "A classic hot dog made with a juicy beef sausage, topped with American cheese, and served in a soft bun. Perfect for a quick and satisfying snack.",
+      "fee": 5,
+      "id": "1d52f22e-2488-11ee-be56-0242ac120002",
+      "numberInCart": 0,
+      "pic": "hotdog1",
+      "star": 3,
+      "time": 12,
+      "title": "Francheezie"
+    },
+    "29149fda-248e-11ee-be56-0242ac120002": {
+      "calories": 80,
+      "category": "Drink",
+      "description": "A refreshing drink made with fresh mint, zesty orange, a hint of sugar, freshly squeezed orange juice, and served over a cup of ice cubes. Enjoy the vibrant flavors of this delightful beverage.",
+      "fee": 10,
+      "id": "29149fda-248e-11ee-be56-0242ac120002",
+      "numberInCart": 0,
+      "pic": "drink3",
+      "star": 5,
+      "time": 15,
+      "title": "Margarita"
+    },
+    "2d2d01b2-248d-11ee-be56-0242ac120002": {
+      "calories": 800,
+      "category": "Burger",
+      "description": "A mouthwatering burger made with a juicy beef patty, melted cheese, fresh tomato slices, crispy onion rings, crisp lettuce, tangy ketchup, creamy mayonnaise, zesty mustard, and tangy pickles. Served on a soft bun.",
+      "fee": 20,
+      "id": "2d2d01b2-248d-11ee-be56-0242ac120002",
+      "numberInCart": 0,
+      "pic": "burger2",
+      "star": 4,
+      "time": 16,
+      "title": "Le Pigeon Burger"
+    },
+    "37412010-248e-11ee-be56-0242ac120002": {
+      "calories": 50,
+      "category": "Drink",
+      "description": "A refreshing drink made with fresh mint, zesty orange, a hint of sugar, freshly squeezed orange juice, and served over a cup of ice cubes. Sip on this delightful beverage and feel refreshed.",
+      "fee": 10,
+      "id": "37412010-248e-11ee-be56-0242ac120002",
+      "numberInCart": 0,
+      "pic": "drink4",
+      "star": 5,
+      "time": 15,
+      "title": "Bloody Mary"
+    },
+    "422614b4-248d-11ee-be56-0242ac120002": {
+      "calories": 700,
+      "category": "Burger",
+      "description": "A delicious burger made with a juicy beef patty, melted cheese, fresh tomato slices, crispy onion rings, crisp lettuce, tangy ketchup, creamy mayonnaise, zesty mustard, and tangy pickles. Served on a soft bun.",
+      "fee": 10,
+      "id": "422614b4-248d-11ee-be56-0242ac120002",
+      "numberInCart": 0,
+      "pic": "burger3",
+      "star": 4,
+      "time": 15,
+      "title": "Double Burger"
+    },
+    "46e00efe-248a-11ee-be56-0242ac120002": {
+      "calories": 200,
+      "category": "HotDog",
+      "description": "A unique twist on the classic hot dog. This version features plakken bacon, drizzled with ahornsiroop, and topped with ketchup. Served in soft hotdog-broodjes.",
+      "fee": 12,
+      "id": "46e00efe-248a-11ee-be56-0242ac120002",
+      "numberInCart": 0,
+      "pic": "hotdog4",
+      "star": 4,
+      "time": 19,
+      "title": "Reindeer Dog"
+    },
+    "55d71f8a-248d-11ee-be56-0242ac120002": {
+      "calories": 900,
+      "category": "Burger",
+      "description": "A tasty burger made with a juicy beef patty, melted cheese, fresh tomato slices, crispy onion rings, crisp lettuce, tangy ketchup, creamy mayonnaise, zesty mustard, and tangy pickles. Served on a soft bun.",
+      "fee": 10,
+      "id": "55d71f8a-248d-11ee-be56-0242ac120002",
+      "numberInCart": 0,
+      "pic": "burger4",
+      "star": 4,
+      "time": 15,
+      "title": "Chargrilled Burger "
+    },
+    "6cf1b105-6c0a-46c6-a81d-cab8c99c9274": {
+      "calories": 800,
+      "category": "Burger 2",
+      "description": "A delicious burger made with juicy beef patty, melted cheese, fresh tomato slices, crispy onion rings, crisp lettuce, tangy ketchup, creamy mayonnaise, zesty mustard, and tangy pickles. Served on a soft bun.",
+      "fee": 10,
+      "id": "6cf1b105-6c0a-46c6-a81d-cab8c99c9274",
+      "numberInCart": 0,
+      "pic": "burger",
+      "star": 4,
+      "time": 15,
+      "title": "Aristocrat Burger"
+    },
+    "71aa66e4-2489-11ee-be56-0242ac120002": {
+      "calories": 250,
+      "category": "HotDog",
+      "description": "A flavorful hot dog made with a beef sausage, topped with American cheese, and served in a soft bun. Enjoy the combination of flavors in every bite.",
+      "fee": 7,
+      "id": "71aa66e4-2489-11ee-be56-0242ac120002",
+      "numberInCart": 0,
+      "pic": "hotdog2",
+      "star": 4,
+      "time": 20,
+      "title": "Puka Dog"
+    },
+    "7bb7ac4a-248a-11ee-be56-0242ac120002": {
+      "calories": 220,
+      "category": "HotDog",
+      "description": "A satisfying hot dog made with a beef sausage, topped with American cheese, and served in a soft bun. Enjoy the combination of flavors in every bite.",
+      "fee": 14,
+      "id": "7bb7ac4a-248a-11ee-be56-0242ac120002",
+      "numberInCart": 0,
+      "pic": "hotdog5",
+      "star": 3,
+      "time": 21,
+      "title": "Reuben Dog"
+    },
+    "7edf8270-248b-11ee-be56-0242ac120002": {
+      "calories": 120,
+      "category": "Donut",
+      "description": "A delightful donut made with a rich batter of eggs, corn syrup, baking powder, baking soda, cocoa powder, and a pinch of sea salt. Enjoy the indulgent flavors in every bite.",
+      "fee": 22,
+      "id": "7edf8270-248b-11ee-be56-0242ac120002",
+      "numberInCart": 0,
+      "pic": "donut2",
+      "star": 3,
+      "time": 12,
+      "title": "Boston cream "
+    },
+    "817053f9-7883-448c-8c81-93ea42cf6cae": {
+      "calories": 800,
+      "category": "Burger",
+      "description": "A classic burger made with a juicy beef patty, melted cheese, fresh tomato slices, crispy onion rings, crisp lettuce, tangy ketchup, creamy mayonnaise, zesty mustard, and tangy pickles. Served on a soft bun.",
+      "fee": 10,
+      "id": "817053f9-7883-448c-8c81-93ea42cf6cae",
+      "numberInCart": 0,
+      "pic": "burger",
+      "star": 4,
+      "time": 15,
+      "title": "Avalanche Burger"
+    },
+    "871562ec-248c-11ee-be56-0242ac120002": {
+      "calories": 1000,
+      "category": "Pizza",
+      "description": "A mouthwatering pizza topped with mozzarella cheese, flavorful pizza sauce, fresh onion slices, ripe tomato slices, sautéed mushrooms, colorful bell peppers, and sliced olives. Baked to perfection on a crispy pizza dough.",
+      "fee": 20,
+      "id": "871562ec-248c-11ee-be56-0242ac120002",
+      "numberInCart": 0,
+      "pic": "pizza2",
+      "star": 4,
+      "time": 22,
+      "title": "California Pizza"
+    },
+    "a0ca130a-248b-11ee-be56-0242ac120002": {
+      "calories": 100,
+      "category": "Donut",
+      "description": "A delightful donut made with a rich batter of eggs, corn syrup, baking powder, baking soda, cocoa powder, and a pinch of sea salt. Topped with a delightful glaze.",
+      "fee": 20,
+      "id": "a0ca130a-248b-11ee-be56-0242ac120002",
+      "numberInCart": 0,
+      "pic": "donut3",
+      "star": 4,
+      "time": 22,
+      "title": "Glazed Doughnut"
+    },
+    "a268a928-248c-11ee-be56-0242ac120002": {
+      "calories": 800,
+      "category": "Pizza",
+      "description": "mozzarella cheese, pizza sauce, pizza dough, onion, tomato, mushroom, bell pepper, olive",
+      "fee": 15,
+      "id": "a268a928-248c-11ee-be56-0242ac120002",
+      "numberInCart": 0,
+      "pic": "pizza4",
+      "star": 4,
+      "time": 21,
+      "title": "Greek Pizza"
+    },
+    "b83b6092-248c-11ee-be56-0242ac120002": {
+      "calories": 1100,
+      "category": "Pizza",
+      "description": "A delicious pizza topped with mozzarella cheese, flavorful pizza sauce, fresh onion slices, ripe tomato slices, sautéed mushrooms, colorful bell peppers, and sliced olives. Baked to perfection on a crispy pizza dough.",
+      "fee": 17,
+      "id": "b83b6092-248c-11ee-be56-0242ac120002",
+      "numberInCart": 0,
+      "pic": "pizza5",
+      "star": 5,
+      "time": 20,
+      "title": "Neapolitan Pizza"
+    },
+    "c3daf5c6-248b-11ee-be56-0242ac120002": {
+      "calories": 140,
+      "category": "Donut",
+      "description": "A delightful donut made with a rich batter of eggs, corn syrup, baking powder, baking soda, cocoa powder, and a pinch of sea salt. Topped with a delightful glaze.",
+      "fee": 20,
+      "id": "c3daf5c6-248b-11ee-be56-0242ac120002",
+      "numberInCart": 0,
+      "pic": "donut4",
+      "star": 4,
+      "time": 22,
+      "title": "Apple fritters"
+    },
+    "ccf70db4-248d-11ee-be56-0242ac120002": {
+      "calories": 50,
+      "category": "Drink",
+      "description": "A refreshing drink made with fresh mint, zesty orange, a hint of sugar, freshly squeezed orange juice, and served over a cup of ice cubes. Perfect for cooling down on a hot day.",
+      "fee": 10,
+      "id": "ccf70db4-248d-11ee-be56-0242ac120002",
+      "numberInCart": 0,
+      "pic": "drink1",
+      "star": 5,
+      "time": 15,
+      "title": "Pina Colada"
+    },
+    "d3649c9a-5ae4-4131-a201-d4d3b8da0666": {
+      "calories": 900,
+      "category": "Pizza",
+      "description": "A mouthwatering vegetable pizza topped with mozzarella cheese, flavorful pizza sauce, fresh onion slices, ripe tomato slices, sautéed mushrooms, colorful bell peppers, and sliced olives. Baked to perfection on a crispy pizza dough.",
+      "fee": 12,
+      "id": "d3649c9a-5ae4-4131-a201-d4d3b8da0666",
+      "numberInCart": 0,
+      "pic": "pizza3",
+      "star": 4,
+      "time": 20,
+      "title": "Vegetable Pizza"
+    },
+    "d70df0d0-248b-11ee-be56-0242ac120002": {
+      "calories": 160,
+      "category": "Donut",
+      "description": "A delightful donut made with a rich batter of eggs, corn syrup, baking powder, baking soda, cocoa powder, and a pinch of sea salt. Topped with a delightful glaze.",
+      "fee": 20,
+      "id": "d70df0d0-248b-11ee-be56-0242ac120002",
+      "numberInCart": 0,
+      "pic": "donut5",
+      "star": 4,
+      "time": 22,
+      "title": "Paczki"
+    },
+    "dd4dd6de-fcb4-46f4-9300-e38a23312955": {
+      "calories": 1000,
+      "category": "Pizza",
+      "description": "A classic pepperoni pizza topped with generous slices of pepperoni, melted mozzarella cheese, and flavorful pizza sauce on a delicious pizza dough. Perfectly baked to achieve a crispy crust and gooey cheese.",
+      "fee": 13,
+      "id": "dd4dd6de-fcb4-46f4-9300-e38a23312955",
+      "numberInCart": 0,
+      "pic": "pizza1",
+      "star": 5,
+      "time": 20,
+      "title": "Pepperoni Pizza"
+    },
+    "e9924474-2489-11ee-be56-0242ac120002": {
+      "calories": 300,
+      "category": "HotDog",
+      "description": "A satisfying hot dog made with a beef sausage, topped with American cheese, and served in a soft bun. Indulge in the delicious combination of flavors and textures.",
+      "fee": 10,
+      "id": "e9924474-2489-11ee-be56-0242ac120002",
+      "numberInCart": 0,
+      "pic": "hotdog3",
+      "star": 4,
+      "time": 17,
+      "title": "Ripper"
+    },
+    "efeb9162-248a-11ee-be56-0242ac120002": {
+      "calories": 100,
+      "category": "Donut",
+      "description": "A delectable donut made with a rich batter of eggs, corn syrup, baking powder, baking soda, cocoa powder, and a pinch of sea salt. Topped with a delightful glaze.",
+      "fee": 20,
+      "id": "efeb9162-248a-11ee-be56-0242ac120002",
+      "numberInCart": 0,
+      "pic": "donut1",
+      "star": 4,
+      "time": 22,
+      "title": "Cruller"
+    }
+  },
+  "orders": {
+    "32ea813c-02aa-4154-8655-da72c7090228": {
+      "date": "20-Dec-2022, 3:00 PM",
+      "id": "32ea813c-02aa-4154-8655-da72c7090228",
+      "listFood": "[{\"calories\":800,\"category\":\"Burger\",\"description\":\"beef, cheese, tomato, onion, lettuce, ketchup, mayonnaise, mustard, pickles\",\"fee\":10.0,\"id\":817053f9-7883-448c-8c81-93ea42cf6cae,\"numberInCart\":3,\"pic\":\"burger\",\"star\":4.0,\"time\":15,\"title\":\"Burger\"},{\"calories\":900,\"category\":\"Pizza\",\"description\":\"mozzarella cheese, pizza sauce, pizza dough, onion, tomato, mushroom, bell pepper, olive\",\"fee\":12.0,\"id\":d3649c9a-5ae4-4131-a201-d4d3b8da0666,\"numberInCart\":3,\"pic\":\"pizza3\",\"star\":4.0,\"time\":20,\"title\":\"Vegetable Pizza\"}]",
+      "userId": "4796b67d-f8d1-4628-b6f0-419e8fef3cdf"
+    },
+    "551cda80-efda-41ec-b639-e103afb8372f": {
+      "date": "15-May-2023, 8:00 AM",
+      "id": "551cda80-efda-41ec-b639-e103afb8372f",
+      "listFood": "[{\"calories\":1000,\"category\":\"Pizza\",\"description\":\"slices pepperoni ,mozzarella cheese, pizza sauce, pizza dough\",\"fee\":13.0,\"id\":dd4dd6de-fcb4-46f4-9300-e38a23312955,\"numberInCart\":1,\"pic\":\"pizza1\",\"star\":5.0,\"time\":20,\"title\":\"Pepperoni Pizza\"}]",
+      "userId": "4796b67d-f8d1-4628-b6f0-419e8fef3cdf"
+    }
+  },
+  "users": {
+    "4796b67d-f8d1-4628-b6f0-419e8fef3cdf": {
+      "address": "Viet Nam",
+      "email": "admin@gmail.com",
+      "fullName": "Admin",
+      "id": "4796b67d-f8d1-4628-b6f0-419e8fef3cdf",
+      "password": "admin",
+      "phoneNumber": "123456789"
+    },
+    "a3e89b58-2a7d-466a-9279-3a0cb6b1b95c": {
+      "address": "1",
+      "email": "1",
+      "fullName": "1",
+      "id": "a3e89b58-2a7d-466a-9279-3a0cb6b1b95c",
+      "password": "1",
+      "phoneNumber": "1"
+    },
+    "f37f2a2b-38af-4134-bda8-482bccaf547e": {
+      "address": "HN",
+      "email": "ok@gmail.com",
+      "fullName": "Ok",
+      "id": "f37f2a2b-38af-4134-bda8-482bccaf547e",
+      "password": "anhyrurm1",
+      "phoneNumber": "0353510222"
+    }
+  }
+}
