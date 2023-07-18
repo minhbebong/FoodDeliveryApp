@@ -73,6 +73,29 @@ public class FoodDao {
         });
     }
 
+    public void searchByTitle(String search,MyCallBack<List<Food>> myCallBack) {
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("foods");
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                List<Food> foods = new ArrayList<>();
+                for (DataSnapshot food: dataSnapshot.getChildren()) {
+                    Food temp = food.getValue(Food.class);
+                    if(temp.getTitle().toLowerCase().trim().contains(search.toLowerCase().trim())){
+                        foods.add(temp);
+                    }
+                }
+                myCallBack.onLoaded(foods);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                myCallBack.onCancelled(databaseError);
+            }
+        });
+    }
     public void searchByCategory(String search,MyCallBack<List<Food>> myCallBack) {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();

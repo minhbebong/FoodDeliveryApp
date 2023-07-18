@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +39,10 @@ public class HomeFragment extends Fragment implements OnItemClickListener<String
     private RecyclerView.Adapter adapter,adapter2;
     private RecyclerView recyclerViewCategoryList,recyclerViewPopularList;
     private TextView txtWelcome;
+
+    private EditText txtSearch;
+
+    private  String searchString;
 
     public HomeFragment() {
     }
@@ -67,6 +72,12 @@ public class HomeFragment extends Fragment implements OnItemClickListener<String
         welcomeText(view);
         recyclerViewCategory(view);
         recyclerViewPopular(view);
+
+        view.findViewById(R.id.btn_search).setOnClickListener(v ->{
+            txtSearch = view.findViewById(R.id.editTextText);
+            searchString = txtSearch.getText().toString();
+            startActivity(new Intent(getContext(), FoodSearchActivity.class).putExtra("search", searchString));
+        });
         view.findViewById(R.id.btn_more).setOnClickListener(v ->{
             startActivity(new Intent(getContext(), FoodSearchActivity.class).putExtra("more", "more"));
         });
