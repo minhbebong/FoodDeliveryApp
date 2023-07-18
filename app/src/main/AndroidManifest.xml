@@ -56,6 +56,11 @@
         <activity android:name=".Fragment.AboutUsFragment" />
         <activity android:name=".Fragment.FaqFragment" />
 
+        <activity android:name=".Fragment.PrivacyFragment" />
+        <activity android:name=".Fragment.ContactFragment" />
+        <activity android:name=".Fragment.AboutUsFragment" />
+        <activity android:name=".Fragment.FaqFragment" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

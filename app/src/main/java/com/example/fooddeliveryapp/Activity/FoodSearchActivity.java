@@ -25,12 +25,15 @@ public class FoodSearchActivity extends AppCompatActivity implements OnItemClick
 
     String cate;
     String more;
+
+    String text;
      RecyclerView recyclerViewList;
      TextView searchHeader;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_search);
+        text = getIntent().getStringExtra("search");
         cate = getIntent().getStringExtra("cate");
         more = getIntent().getStringExtra("more");
         binding();
@@ -38,6 +41,8 @@ public class FoodSearchActivity extends AppCompatActivity implements OnItemClick
             initDataCate();
         }else if(more != null&& !more.isEmpty()) {
             initDataMore();
+        }else if(text != null&& !text.isEmpty()) {
+            initDataText();
         }
     }
 
@@ -46,10 +51,28 @@ public class FoodSearchActivity extends AppCompatActivity implements OnItemClick
         searchHeader = findViewById(R.id.textView5);
     }
 
+    private void initDataText(){
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), RecyclerView.VERTICAL, false);
+        recyclerViewList.setLayoutManager(linearLayoutManager);
+        searchHeader.setText("Food Search: " + text);
+        FoodDao.getInstance().searchByTitle(text, new MyCallBack<List<Food>>() {
+            @Override
+            public void onLoaded(List<Food> data) {
+                RecyclerView.Adapter adapter = new FoodAdapter(data, FoodSearchActivity.this);
+                recyclerViewList.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
     private void initDataCate() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), RecyclerView.VERTICAL, false);
         recyclerViewList.setLayoutManager(linearLayoutManager);
-        searchHeader.setText("Food Search: " + cate);
+        searchHeader.setText("Category: " + cate);
         FoodDao.getInstance().searchByCategory(cate, new MyCallBack<List<Food>>() {
             @Override
             public void onLoaded(List<Food> data) {
@@ -66,9 +89,10 @@ public class FoodSearchActivity extends AppCompatActivity implements OnItemClick
     }
 
     private void initDataMore() {
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), RecyclerView.VERTICAL, false);
         recyclerViewList.setLayoutManager(linearLayoutManager);
-        searchHeader.setText("Food Search: Top 10 Foods Rate");
+        searchHeader.setText("Rating: Top 10 Foods Rate");
         FoodDao.getInstance().getTop10Food( new MyCallBack<List<Food>>() {
             @Override
             public void onLoaded(List<Food> data) {
