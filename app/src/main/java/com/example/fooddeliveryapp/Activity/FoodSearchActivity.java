@@ -72,7 +72,7 @@ public class FoodSearchActivity extends AppCompatActivity implements OnItemClick
     private void initDataCate() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), RecyclerView.VERTICAL, false);
         recyclerViewList.setLayoutManager(linearLayoutManager);
-        searchHeader.setText("Food Search: " + cate);
+        searchHeader.setText("Category: " + cate);
         FoodDao.getInstance().searchByCategory(cate, new MyCallBack<List<Food>>() {
             @Override
             public void onLoaded(List<Food> data) {
@@ -92,7 +92,7 @@ public class FoodSearchActivity extends AppCompatActivity implements OnItemClick
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), RecyclerView.VERTICAL, false);
         recyclerViewList.setLayoutManager(linearLayoutManager);
-        searchHeader.setText("Food Search: Top 10 Foods Rate");
+        searchHeader.setText("Rating: Top 10 Foods Rate");
         FoodDao.getInstance().getTop10Food( new MyCallBack<List<Food>>() {
             @Override
             public void onLoaded(List<Food> data) {
